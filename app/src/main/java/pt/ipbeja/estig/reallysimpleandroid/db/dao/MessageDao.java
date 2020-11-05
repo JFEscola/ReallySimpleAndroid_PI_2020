@@ -1,9 +1,10 @@
 package pt.ipbeja.estig.reallysimpleandroid.db.dao;
 
-import java.util.List;
-
 import androidx.room.Dao;
 import androidx.room.Query;
+
+import java.util.List;
+
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 
 @Dao
