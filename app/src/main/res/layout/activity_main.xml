@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".activities.MainActivity"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextClock
+            android:id="@+id/textClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:format12Hour="@null"
+            android:format24Hour="HH:mm"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="DATA"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textClock" />
+
+        <ImageView
+            android:id="@+id/battery_background"
+            android:layout_width="100dp"
+            android:layout_height="90dp"
+            app:layout_constraintBottom_toTopOf="@+id/battery_charge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/battery_background" />
+
+        <ImageView
+            android:id="@+id/battery_icon"
+            android:layout_width="100dp"
+            android:layout_height="90dp"
+            android:scaleX=".90"
+            android:scaleY=".90"
+            app:layout_constraintBottom_toBottomOf="@id/battery_background"
+            app:layout_constraintEnd_toEndOf="@id/battery_background"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/battery_background"
+            app:layout_constraintTop_toTopOf="@+id/battery_background"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/battery_20" />
+
+        <TextView
+            android:id="@+id/battery_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="XX%"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/battery_background"
+            app:layout_constraintTop_toBottomOf="@+id/battery_background" />
+
+        <ImageView
+            android:id="@+id/signal_background"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/signal_background" />
+
+        <ImageView
+            android:id="@+id/signal_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/signal_background"
+            app:layout_constraintEnd_toEndOf="@+id/signal_background"
+            app:layout_constraintStart_toStartOf="@+id/signal_background"
+            app:layout_constraintTop_toTopOf="@+id/signal_background"
+            app:srcCompat="@drawable/signal_strength_0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Switch
+        android:id="@+id/button_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Chamada  "
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_emergency"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_report_black_24dp"
+            android:onClick="onButtonClicked"
+            android:text="Emergência"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_contacts"
+            app:layout_constraintTop_toBottomOf="@+id/btn_favContact4" />
+
+        <Button
+            android:id="@+id/button_menu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_apps_black_24dp"
+            android:onClick="onButtonClicked"
+            android:text="Aplicações"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_messages"
+            app:layout_constraintTop_toBottomOf="@+id/button_emergency" />
+
+        <Button
+            android:id="@+id/btn_favContact4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_account_circle_black_24dp"
+            android:text="Contact Name"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/button_emergency"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_favContact3"
+            app:layout_constraintTop_toBottomOf="@+id/btn_favContact2" />
+
+        <Button
+            android:id="@+id/btn_favContact2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_account_circle_black_24dp"
+            android:text="Contact Name"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/btn_favContact4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_favContact1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_favContact1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_account_circle_black_24dp"
+            android:text="Contact Name"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/btn_favContact3"
+            app:layout_constraintEnd_toStartOf="@+id/btn_favContact2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+
+            android:id="@+id/btn_favContact3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_account_circle_black_24dp"
+            android:text="Contact Name"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/button_contacts"
+            app:layout_constraintEnd_toStartOf="@+id/btn_favContact4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_favContact1" />
+
+        <Button
+            android:id="@+id/button_contacts"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_account_circle_black_24dp"
+            android:onClick="onButtonClicked"
+            android:text="Contactos"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_messages"
+            app:layout_constraintEnd_toStartOf="@+id/button_emergency"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_favContact3" />
+
+        <Button
+            android:id="@+id/button_messages"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/ic_message"
+            android:onClick="onButtonClicked"
+            android:text="Mensagens"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_menu"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_contacts" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
