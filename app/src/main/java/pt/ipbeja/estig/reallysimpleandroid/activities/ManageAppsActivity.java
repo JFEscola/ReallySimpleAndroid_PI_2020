@@ -1,18 +1,20 @@
 package pt.ipbeja.estig.reallysimpleandroid.activities;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import pt.ipbeja.estig.reallysimpleandroid.R;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import pt.ipbeja.estig.reallysimpleandroid.AppListAdapter;
+import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
+import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
+import pt.ipbeja.estig.reallysimpleandroid.R;
 
 /**
  * The type Manage apps activity.
@@ -20,6 +22,8 @@ import pt.ipbeja.estig.reallysimpleandroid.AppListAdapter;
 public class ManageAppsActivity extends AppCompatActivity {
 
     private RecyclerView appListRecyclerView;
+
+    private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -30,6 +34,22 @@ public class ManageAppsActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Gerir Aplicações");
 
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
+
+        this.homeWatcher.startWatch();
 
         appListRecyclerView = findViewById(R.id.recyclerView_allowed_apps_list);
         appListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -46,6 +66,14 @@ public class ManageAppsActivity extends AppCompatActivity {
     public void onHomeClicked(View view){
         Intent goHome = new Intent(view.getContext(), MainActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
+    }
+    
+    public void homeKeyClick()
+    {
+        this.homeWatcher.stopWatch();
+        Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
         startActivity(goHome);
         finish();
     }

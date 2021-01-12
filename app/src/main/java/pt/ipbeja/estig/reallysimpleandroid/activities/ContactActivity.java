@@ -1,9 +1,5 @@
 package pt.ipbeja.estig.reallysimpleandroid.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +12,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
+import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
@@ -34,6 +36,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     private Intent callIntent;
     private Intent messageIntent;
     private Contact contact;
+    private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,23 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         callCard.setOnClickListener(this);
         messageBtn.setOnClickListener(this);
         messageCard.setOnClickListener(this);
+
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
+
+        this.homeWatcher.startWatch();
     }
 
     @Override
@@ -105,6 +125,14 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     public void onHomeClicked(View view){
         Intent goHome = new Intent(view.getContext(), MainActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
+    }
+
+    public void homeKeyClick()
+    {
+        this.homeWatcher.stopWatch();
+        Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
         startActivity(goHome);
         finish();
     }

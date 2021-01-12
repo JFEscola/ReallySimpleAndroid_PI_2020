@@ -1,11 +1,7 @@
 package pt.ipbeja.estig.reallysimpleandroid.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +9,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.text.TextUtils;
@@ -26,12 +21,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
+import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
 import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
@@ -55,6 +55,8 @@ public class MessageChatActivity extends AppCompatActivity {
     private MessageAdapter adapter;
 
     private CheckSmsReceiver receiver;
+
+    private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     /**
      * The Send sms permission request code.
@@ -103,6 +105,23 @@ public class MessageChatActivity extends AppCompatActivity {
 
 
         receiver = new CheckSmsReceiver();
+
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
+
+        this.homeWatcher.startWatch();
     }
 
     public class CheckSmsReceiver extends BroadcastReceiver{
@@ -313,6 +332,14 @@ public class MessageChatActivity extends AppCompatActivity {
     public void onHomeClicked(View view){
         Intent goHome = new Intent(view.getContext(), MainActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
+    }
+
+    public void homeKeyClick()
+    {
+        this.homeWatcher.stopWatch();
+        Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
         startActivity(goHome);
         finish();
     }

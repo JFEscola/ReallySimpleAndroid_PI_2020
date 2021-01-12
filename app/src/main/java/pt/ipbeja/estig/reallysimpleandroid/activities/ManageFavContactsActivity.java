@@ -1,19 +1,21 @@
 package pt.ipbeja.estig.reallysimpleandroid.activities;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import pt.ipbeja.estig.reallysimpleandroid.ContactsListAdapter;
+import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
+import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
@@ -26,6 +28,7 @@ public class ManageFavContactsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ContactsListAdapter adapter;
     private MessageDatabase db;
+    private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -43,6 +46,23 @@ public class ManageFavContactsActivity extends AppCompatActivity {
         List<Contact> contacts = db.contactDao().getAll();
         this.adapter = new ContactsListAdapter(this, contacts, false);
         this.recyclerView.setAdapter(adapter);
+
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
+
+        this.homeWatcher.startWatch();
     }
 
     @Override
@@ -54,6 +74,14 @@ public class ManageFavContactsActivity extends AppCompatActivity {
     public void onHomeClicked(View view){
         Intent goHome = new Intent(view.getContext(), MainActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
+    }
+
+    public void homeKeyClick()
+    {
+        this.homeWatcher.stopWatch();
+        Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
         startActivity(goHome);
         finish();
     }

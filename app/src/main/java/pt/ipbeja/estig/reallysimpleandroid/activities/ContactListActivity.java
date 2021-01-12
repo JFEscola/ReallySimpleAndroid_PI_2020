@@ -1,29 +1,28 @@
 package pt.ipbeja.estig.reallysimpleandroid.activities;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
-import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 import pt.ipbeja.estig.reallysimpleandroid.ContactsListAdapter;
+import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
+import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
-
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 /**
  * The type Contact list activity.
@@ -35,6 +34,7 @@ public class ContactListActivity extends AppCompatActivity {
     private ContactsListAdapter adapter;
     private List<Contact> contactsList;
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
+    private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -53,6 +53,23 @@ public class ContactListActivity extends AppCompatActivity {
 
         this.recyclerView.setAdapter(this.adapter);
         this.recyclerView.setLayoutManager(manager);
+
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
+
+        this.homeWatcher.startWatch();
     }
 
     @Override
@@ -96,6 +113,14 @@ public class ContactListActivity extends AppCompatActivity {
     public void onHomeClicked(View view){
         Intent goHome = new Intent(view.getContext(), MainActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
+    }
+
+    public void homeKeyClick()
+    {
+        this.homeWatcher.stopWatch();
+        Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
         startActivity(goHome);
         finish();
     }

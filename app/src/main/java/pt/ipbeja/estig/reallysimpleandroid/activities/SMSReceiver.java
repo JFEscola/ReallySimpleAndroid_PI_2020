@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.widget.Toast;
 
 import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
