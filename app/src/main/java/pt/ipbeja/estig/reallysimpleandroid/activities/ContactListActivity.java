@@ -27,7 +27,8 @@ import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 /**
  * The type Contact list activity.
  */
-public class ContactListActivity extends AppCompatActivity {
+public class ContactListActivity extends AppCompatActivity
+{
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager manager;
@@ -38,7 +39,8 @@ public class ContactListActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
 
@@ -48,7 +50,7 @@ public class ContactListActivity extends AppCompatActivity {
         this.contactsList = new ArrayList<>();
         this.recyclerView = findViewById(R.id.recyclerView_contacts_list);
         this.manager = new LinearLayoutManager(this);
-        this.adapter = new ContactsListAdapter(this, this.contactsList, true);
+        this.adapter = new ContactsListAdapter(this, this.contactsList, "contactListActivity");
         getContacts();
 
         this.recyclerView.setAdapter(this.adapter);
@@ -73,7 +75,8 @@ public class ContactListActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
@@ -82,10 +85,13 @@ public class ContactListActivity extends AppCompatActivity {
      * Gets the contacts if the the permission is given, otherwise ask user to give the permission.
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void getContacts() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+    public void getContacts()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
+        {
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-        } else {
+        } else
+        {
             List<Contact> contacts = Contact.getContacts(this);
             this.adapter.setFavContactList(contacts);
         }
@@ -93,11 +99,15 @@ public class ContactListActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
                 getContacts();
-            } else {
+            } else
+            {
                 Toast.makeText(this, "Until you grant the permission, we cannot display the names", Toast.LENGTH_SHORT).show();
             }
         }
@@ -105,12 +115,14 @@ public class ContactListActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    protected void onNewIntent(Intent intent)
+    {
         super.onNewIntent(intent);
         System.out.println("New Intent Method - Contacts");
     }
 
-    public void onHomeClicked(View view){
+    public void onHomeClicked(View view)
+    {
         Intent goHome = new Intent(view.getContext(), MainActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(goHome);

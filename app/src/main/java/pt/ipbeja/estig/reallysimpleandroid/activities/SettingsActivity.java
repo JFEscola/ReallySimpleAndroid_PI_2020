@@ -18,15 +18,18 @@ import pt.ipbeja.estig.reallysimpleandroid.R;
 /**
  * The type Settings activity.
  */
-public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener
+{
 
     private View manageAppsBtn;
     private View manageContactsBtn;
     private View closeAppBtn;
+    private View manageSOSBtn;
     private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
@@ -36,9 +39,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         this.manageAppsBtn = findViewById(R.id.linearLayout_settings_manage_apps_btn);
         this.manageContactsBtn = findViewById(R.id.linearLayout_settings_manage_conttacts_btn);
         this.closeAppBtn = findViewById(R.id.linearLayout_settings_exit_app_btn);
+        this.manageSOSBtn = findViewById(R.id.linearLayout_settings_manage_sos);
         this.manageAppsBtn.setOnClickListener(this);
         this.manageContactsBtn.setOnClickListener(this);
         this.closeAppBtn.setOnClickListener(this);
+        this.manageSOSBtn.setOnClickListener(this);
 
         this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
         {
@@ -59,19 +64,25 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
             case R.id.linearLayout_settings_manage_apps_btn:
                 startActivity(new Intent(this, ManageAppsActivity.class));
                 break;
             case R.id.linearLayout_settings_manage_conttacts_btn:
                 startActivity(new Intent(this, ContactsSettingsActivity.class));
+                break;
+            case R.id.linearLayout_settings_manage_sos:
+                startActivity(new Intent(this, ManageSOS.class));
                 break;
             case R.id.linearLayout_settings_exit_app_btn:
                 this.closeApp();
@@ -84,18 +95,21 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Prompts the user to confirm if he wants to close the application.
      */
-    private void closeApp() {
+    private void closeApp()
+    {
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setMessage("Tem a certeza que deseja sair da aplicação?")
                 .setPositiveButton("Sim", null)
                 .setNegativeButton("Não", null)
                 .create();
 
-        dialog.setOnShowListener(dialog1 -> {
+        dialog.setOnShowListener(dialog1 ->
+        {
 
             Button yesBtn = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
             Button noBtn = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-            yesBtn.setOnClickListener(v -> {
+            yesBtn.setOnClickListener(v ->
+            {
                 this.getPackageManager().clearPackagePreferredActivities(this.getPackageName());
                 finishAffinity();
                 System.exit(0);
@@ -114,7 +128,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         dialog.show();
     }
 
-    public void onHomeClicked(View view){
+    public void onHomeClicked(View view)
+    {
         Intent goHome = new Intent(view.getContext(), MainActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(goHome);

@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.SecurePreferences;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TelephonyManager mTelephonyManager;
     MyPhoneStateListener mPhoneStateListener;
     int mSignalStrength = 0;
-    private final HomeWatcher homeWatcher = new HomeWatcher(this);
 
     BroadcastReceiver messageReceiver = new BroadcastReceiver()
     {
@@ -311,7 +309,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     this.favContacts = new ArrayList<>();
                     while (mapIterator.hasNext())
                     {
-
                         Contact contact = Utils.JsonObjectStringToContact(mapIterator.next().getValue());
                         Button btn = buttonsIterator.next();
                         btn.setText(contact.getFirstName() + " " + contact.getLastName());
@@ -377,6 +374,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == (R.id.button_messages))
         {
             startActivity(new Intent(this, MessagesActivity.class));
+        }
+        else if (view.getId() == (R.id.button_emergency))
+        {
+            startActivity(new Intent(this, EmergencyActivity.class));
         }
     }
 

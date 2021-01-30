@@ -2,26 +2,21 @@ package pt.ipbeja.estig.reallysimpleandroid.db.entity;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-
-import pt.ipbeja.estig.reallysimpleandroid.Utils.ContactComparator;
-import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
-
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import pt.ipbeja.estig.reallysimpleandroid.Utils.ContactComparator;
 import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
 
 /**
@@ -30,6 +25,7 @@ import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
 @Entity
 public class Contact {
     private boolean favorite;
+    private boolean sos;
 
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -57,6 +53,17 @@ public class Contact {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.favorite = false;
+        this.sos = false;
+    }
+
+    public boolean isSos()
+    {
+        return this.sos;
+    }
+
+    public void setSos(boolean sos)
+    {
+        this.sos = sos;
     }
 
     /**

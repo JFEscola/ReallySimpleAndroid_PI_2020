@@ -8,8 +8,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -18,16 +17,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ManageFavContactsActivity"></activity>
+        <activity android:name=".activities.ChooseSOSContactActivity"></activity>
+        <activity android:name=".activities.ManageSOS" />
+        <activity android:name=".activities.EmergencyActivity" />
+        <activity android:name=".activities.ManageFavContactsActivity" />
         <activity android:name=".activities.ContactsSettingsActivity" />
         <activity android:name=".activities.ManageAppsActivity" />
         <activity android:name=".activities.MessagesActivity" />
         <activity android:name=".activities.MenuActivity" />
         <activity android:name=".activities.MessageChatActivity" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name="pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
@@ -38,18 +41,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="pt.ipbeja.estig.reallysimpleandroid.activities.ContactListActivity"
+            android:name=".activities.ContactListActivity"
             android:label="Contactos" />
-        <activity android:name="pt.ipbeja.estig.reallysimpleandroid.activities.ContactActivity" />
+        <activity android:name=".activities.ContactActivity" />
 
-        <receiver android:name="pt.ipbeja.estig.reallysimpleandroid.StartActivityOnBootReceiver">
+        <receiver android:name=".StartActivityOnBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name=".activities.SMSReceiver" android:exported="true" >
+        <receiver
+            android:name=".activities.SMSReceiver"
+            android:exported="true">
             <intent-filter android:priority="1000">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
