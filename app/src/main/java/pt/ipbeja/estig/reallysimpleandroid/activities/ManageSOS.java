@@ -11,9 +11,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import pt.ipbeja.estig.reallysimpleandroid.R;
+import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 public class ManageSOS extends AppCompatActivity
@@ -35,26 +38,55 @@ public class ManageSOS extends AppCompatActivity
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Gerir SOS");
 
+        TextView nameCnt1 = findViewById(R.id.nameContact1);
+        TextView nameCnt2 = findViewById(R.id.nameContact2);
+        TextView numberCnt1 = findViewById(R.id.numberContact1);
+        TextView numberCnt2 = findViewById(R.id.numberContact2);
+
         this.addContactBtn1 = findViewById(R.id.addSOSContactBtn1);
         this.addContactBtn2 = findViewById(R.id.addSOSContactBtn2);
-        this.addSOSContactBtn = findViewById(R.id.addSOSContactBtn3);
+
 
         this.addContactBtn1.setOnClickListener(v ->
         {
-            setSOSPersonContact();
+            startActivity(new Intent(this, ChooseSOSContactActivity.class));
+
+            System.out.println(sosContacts.isEmpty());
+
+            if (!sosContacts.isEmpty())
+            {
+                int index = 0;
+                removeContactToSos(index);
+
+                nameCnt1.setText("...");
+                numberCnt1.setText("...");
+            }
         });
 
         this.addContactBtn2.setOnClickListener(v ->
         {
-            setSOSPersonContact();
+            startActivity(new Intent(this, ChooseSOSContactActivity.class));
+
+            System.out.println(sosContacts.isEmpty());
+
+            if (!sosContacts.isEmpty() &&  sosContacts.size() > 1)
+            {
+                int index = 1;
+                removeContactToSos(index);
+
+                nameCnt2.setText("...");
+                numberCnt2.setText("...");
+            }
         });
-        
+
+        checkForSosContacts();
     }
 
-    private void setSOSPersonContact()
+    @Override
+    protected void onResume()
     {
-        ContactPickDialog contactPickDialog = new ContactPickDialog();
-        contactPickDialog.show(getSupportFragmentManager(), "pick contact dialog");
+        super.onResume();
+        checkForSosContacts();
     }
 
     public void onHomeClicked(View view)
@@ -65,7 +97,20 @@ public class ManageSOS extends AppCompatActivity
         finish();
     }
 
-    private void checkForFavContacts()
+    private void removeContactToSos(int index)
+    {
+        this.sharedPref = this.getSharedPreferences("sosContactsList", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = this.sharedPref.edit();
+        editor.remove(String.valueOf(sosContacts.get(index).getId()));
+        editor.apply();
+
+        sosContacts.remove(index);
+
+        System.out.println("#### TIRASTE DO SOS ####");
+    }
+
+    private void checkForSosContacts()
     {
         List<TextView> nameContactList = new ArrayList<>();
         List<TextView> numberContactList = new ArrayList<>();
@@ -79,7 +124,28 @@ public class ManageSOS extends AppCompatActivity
         this.sharedPref = this.getSharedPreferences("sosContactsList", Context.MODE_PRIVATE);
         new Thread(() ->
         {
+            Map<String, String> map = (Map<String, String>) this.sharedPref.getAll();
 
+            runOnUiThread(() ->
+            {
+                Iterator<Map.Entry<String, String>> mapIterator = map.entrySet().iterator();
+                Iterator<TextView> textViewIteratorName = nameContactList.iterator();
+                Iterator<TextView> textViewIteratorNumber = numberContactList.iterator();
+                this.sosContacts = new ArrayList<>();
+
+                while(mapIterator.hasNext())
+                {
+                    Contact contact = Utils.JsonObjectStringToContact(mapIterator.next().getValue());
+
+                    TextView textViewName = textViewIteratorName.next();
+                    TextView textViewNumber = textViewIteratorNumber.next();
+
+                    textViewName.setText(contact.getFirstName() + " " + contact.getLastName());
+                    textViewNumber.setText(contact.getPhoneNumber());
+
+                    this.sosContacts.add(contact);
+                }
+            });
         }).start();
     }
 }

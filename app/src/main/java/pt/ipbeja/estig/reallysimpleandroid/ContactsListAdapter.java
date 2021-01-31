@@ -223,7 +223,6 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
          */
         public void bind(Contact contact)
         {
-
             this.contact = contact;
             String phoneNumber = String.valueOf(contact.getPhoneNumber());
             String name;
@@ -293,7 +292,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
 
     private void addContactToSos(Contact contact)
     {
-        System.out.println("#### ADICIONOU UM CONTACTO AOS FAVORITOS ####");
+        System.out.println("#### ADICIONOU UM CONTACTO AO SOS ####");
         SharedPreferences.Editor editor = this.sosSharedPref.edit();
         editor.putString(String.valueOf(contact.getId()), Utils.contactToJsonObjectString(contact));
         editor.apply();
