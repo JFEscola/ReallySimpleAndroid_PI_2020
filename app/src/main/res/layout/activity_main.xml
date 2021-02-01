@@ -116,6 +116,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/button_emergency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="! EMERGÊNCIA !" />
+
     <Switch
         android:id="@+id/button_toggle"
         android:layout_width="wrap_content"
@@ -136,12 +142,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_emergency"
+            android:id="@+id/button_"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:drawableTop="@drawable/ic_report_black_24dp"
             android:onClick="onButtonClicked"
-            android:text="Emergência"
+            android:text="---"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/button_menu"
             app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +167,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_messages"
-            app:layout_constraintTop_toBottomOf="@+id/button_emergency" />
+            app:layout_constraintTop_toBottomOf="@+id/button_" />
 
         <Button
             android:id="@+id/btn_favContact4"
@@ -171,7 +177,7 @@
             android:text="Contact Name"
             android:textSize="18sp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/button_emergency"
+            app:layout_constraintBottom_toTopOf="@+id/button_"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_favContact3"
@@ -229,7 +235,7 @@
             android:text="Contactos"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/button_messages"
-            app:layout_constraintEnd_toStartOf="@+id/button_emergency"
+            app:layout_constraintEnd_toStartOf="@+id/button_"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_favContact3" />

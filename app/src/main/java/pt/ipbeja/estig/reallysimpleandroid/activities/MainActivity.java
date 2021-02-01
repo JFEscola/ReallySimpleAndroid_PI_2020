@@ -375,7 +375,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             startActivity(new Intent(this, MessagesActivity.class));
         }
-        else if (view.getId() == (R.id.button_emergency))
+        else if (view.getId() == (R.id.button_))
         {
             startActivity(new Intent(this, EmergencyActivity.class));
         }

@@ -24,7 +24,6 @@ public class ManageSOS extends AppCompatActivity
 
     private Button addContactBtn1;
     private Button addContactBtn2;
-    private Button addSOSContactBtn;
     private List<Contact> sosContacts;
     private SharedPreferences sharedPref;
 
@@ -37,6 +36,8 @@ public class ManageSOS extends AppCompatActivity
 
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Gerir SOS");
+
+        //TODO fazer com que a interface associada a esta class fiquem em fullscreeen comoas outras
 
         TextView nameCnt1 = findViewById(R.id.nameContact1);
         TextView nameCnt2 = findViewById(R.id.nameContact2);
@@ -60,6 +61,9 @@ public class ManageSOS extends AppCompatActivity
 
                 nameCnt1.setText("...");
                 numberCnt1.setText("...");
+
+                nameCnt2.setText("...");
+                numberCnt2.setText("...");
             }
         });
 
