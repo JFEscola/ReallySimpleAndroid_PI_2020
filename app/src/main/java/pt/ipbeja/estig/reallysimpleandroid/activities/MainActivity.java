@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import pt.ipbeja.estig.reallysimpleandroid.GlobalBroadcastReceiver;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.SecurePreferences;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
@@ -50,7 +51,6 @@ import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-
     private Button btnFavContact1;
     private Button btnFavContact2;
     private Button btnFavContact3;
@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Contact> favContacts;
     private int REQUEST_PHONE_CALL = 1;
     private SecurePreferences securePreferences;
+
+    //TODO terminar o BroadCast
+    GlobalBroadcastReceiver globalBroadcastReceiver = new GlobalBroadcastReceiver();
 
     TelephonyManager mTelephonyManager;
     MyPhoneStateListener mPhoneStateListener;
@@ -232,6 +235,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         TextView date = findViewById(R.id.date);
         date.setText(utils.getDate());
+
+        //IntentFilter filter = new IntentFilter(AudioManager.);
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
     }
 
     @Override
@@ -375,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             startActivity(new Intent(this, MessagesActivity.class));
         }
-        else if (view.getId() == (R.id.button_))
+        else if (view.getId() == (R.id.button_emergency))
         {
             startActivity(new Intent(this, EmergencyActivity.class));
         }

@@ -77,4 +77,8 @@ public class ManageAppsActivity extends AppCompatActivity {
         startActivity(goHome);
         finish();
     }
+
+    public void onClick(View view)
+    {
+    }
 }

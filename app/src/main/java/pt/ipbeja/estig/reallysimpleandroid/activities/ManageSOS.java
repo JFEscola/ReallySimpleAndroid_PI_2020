@@ -81,6 +81,8 @@ public class ManageSOS extends AppCompatActivity
                 nameCnt2.setText("...");
                 numberCnt2.setText("...");
             }
+
+            //TODO falta a cena de tocar no homekey (HomeWatcher N Stuff)
         });
 
         checkForSosContacts();
