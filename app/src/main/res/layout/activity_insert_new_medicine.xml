@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.InsertNewMedicine">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/insert_medicine_name"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Nome do medicamento"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/show_medicine_time"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="120dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+
+        app:layout_constraintTop_toBottomOf="@+id/top_layout">
+
+        <Button
+            android:id="@+id/select_medicine_time"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Selecionar hora">
+
+        </Button>
+
+        <Button
+            android:id="@+id/confirm_medicine_insert"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Confirmar"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        </Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

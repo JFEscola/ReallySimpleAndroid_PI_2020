@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ChangeOrDeleteMedicineActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textSize="36dp"
+        android:textAlignment="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+
+        <EditText
+            android:id="@+id/medicine_show_id"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <EditText
+            android:id="@+id/timer_show_id"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/update_medicine_id"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Atualizar"/>
+
+    <Button
+        android:id="@+id/delete_medicine_id"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Apagar"/>
+
+</LinearLayout>

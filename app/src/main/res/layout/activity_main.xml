@@ -143,12 +143,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_"
+            android:id="@+id/button_medicine"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:drawableTop="@drawable/ic_report_black_24dp"
+            android:drawableTop="@drawable/ic_baseline_medical_services_24"
             android:onClick="onButtonClicked"
-            android:text="---"
+            android:text="Medicamentos"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/button_menu"
             app:layout_constraintEnd_toEndOf="parent"
@@ -168,7 +168,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_messages"
-            app:layout_constraintTop_toBottomOf="@+id/button_" />
+            app:layout_constraintTop_toBottomOf="@+id/button_medicine" />
 
         <Button
             android:id="@+id/btn_favContact4"
@@ -178,7 +178,7 @@
             android:text="Contact Name"
             android:textSize="18sp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/button_"
+            app:layout_constraintBottom_toTopOf="@+id/button_medicine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_favContact3"
@@ -236,7 +236,7 @@
             android:text="Contactos"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/button_messages"
-            app:layout_constraintEnd_toStartOf="@+id/button_"
+            app:layout_constraintEnd_toStartOf="@+id/button_medicine"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_favContact3" />

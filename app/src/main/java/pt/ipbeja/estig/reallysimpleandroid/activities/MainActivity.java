@@ -390,6 +390,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             startActivity(new Intent(this, EmergencyActivity.class));
         }
+        else if (view.getId() == (R.id.button_medicine))
+        {
+            startActivity(new Intent(this, MedicineActivity.class));
+        }
     }
 
     @Override
