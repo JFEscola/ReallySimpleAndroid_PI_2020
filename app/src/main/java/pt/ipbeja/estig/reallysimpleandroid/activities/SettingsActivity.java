@@ -26,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private View closeAppBtn;
     private View manageSOSBtn;
     private View manageVolumeBtn;
+    private View manageMedicineBtn;
     private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @Override
@@ -42,11 +43,13 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         this.closeAppBtn = findViewById(R.id.linearLayout_settings_exit_app_btn);
         this.manageSOSBtn = findViewById(R.id.linearLayout_settings_manage_sos);
         this.manageVolumeBtn = findViewById(R.id.linearLayout_settings_manage_volume);
+        this.manageMedicineBtn = findViewById(R.id.textView_medicine_name);
         this.manageAppsBtn.setOnClickListener(this);
         this.manageContactsBtn.setOnClickListener(this);
         this.closeAppBtn.setOnClickListener(this);
         this.manageSOSBtn.setOnClickListener(this);
         this.manageVolumeBtn.setOnClickListener(this);
+        this.manageMedicineBtn.setOnClickListener(this);
 
         this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
         {
@@ -89,6 +92,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.linearLayout_settings_manage_volume:
                 startActivity(new Intent(this, ManageDeviceVolumeActivity.class));
+                break;
+            case R.id.textView_medicine_name:
+                startActivity(new Intent(this, ManageMedicineActivity.class));
                 break;
             case R.id.linearLayout_settings_exit_app_btn:
                 this.closeApp();

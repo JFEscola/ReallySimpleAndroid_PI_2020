@@ -40,7 +40,7 @@ public class ChooseSOSContactActivity extends AppCompatActivity
         //TODO METER A PERMIÇÕES A FUNCIONAR COMO A ContactListActivity PORQUE SE ASSIM NÃO FOR OS
         // CONTACTOS NÃO VÃO APARECER LOGO, TEM QUE SE IR BUSCAR A PERMIÇÃO PRIMEIRO À ContactListActivity (Contactos)
 
-        //TODO fazer com que a interface associada a esta class fiquem em fullscreeen comoas outras
+        //TODO fazer com que a interface associada a esta class fique em fullscreeen como as outras
 
         this.db = MessageDatabase.getINSTANCE(this);
         this.recyclerView = findViewById(R.id.recyclerView_contacts_list);

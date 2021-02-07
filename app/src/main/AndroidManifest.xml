@@ -17,7 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ManageDeviceVolumeActivity"></activity>
+        <activity android:name=".activities.ChangeOrDeleteMedicineActivity"></activity>
+        <activity android:name=".activities.InsertNewMedicine" />
+        <activity android:name=".activities.ManageMedicineActivity" />
+        <activity android:name=".activities.EmergencyActivity$ManageMedicineActivity" />
+        <activity android:name=".activities.MedicineActivity" />
+        <activity android:name=".activities.ManageDeviceVolumeActivity" />
         <activity android:name=".activities.ChooseSOSContactActivity" />
         <activity android:name=".activities.ManageSOS" />
         <activity android:name=".activities.EmergencyActivity" />

@@ -6,11 +6,13 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import pt.ipbeja.estig.reallysimpleandroid.db.dao.ContactDao;
+import pt.ipbeja.estig.reallysimpleandroid.db.dao.MedicineDao;
 import pt.ipbeja.estig.reallysimpleandroid.db.dao.MessageDao;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
+import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
-@Database(entities = {Contact.class, ChatMessage.class}, version = 1, exportSchema = false)
+@Database(entities = {Contact.class, ChatMessage.class, Medicine.class}, version = 2, exportSchema = false)
 public abstract class MessageDatabase extends RoomDatabase {
 
     private static MessageDatabase INSTANCE = null;
@@ -29,5 +31,7 @@ public abstract class MessageDatabase extends RoomDatabase {
     public abstract ContactDao contactDao();
 
     public abstract MessageDao messageDao();
+
+    public abstract MedicineDao medicineDao();
 
 }
