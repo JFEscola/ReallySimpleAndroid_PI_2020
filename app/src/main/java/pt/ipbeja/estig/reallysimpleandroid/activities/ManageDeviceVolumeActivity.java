@@ -116,8 +116,23 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         SharedPreferences sharedPreferences = getSharedPreferences(SOUND_VOLUME_SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(volType, volAmount);
-        editor.putBoolean(volType, volTypeStatus);
+        if (volTypeStatus)
+        {
+            editor.putInt(volType, volAmount);
+            //editor.putBoolean(volType, volTypeStatus);
+        }
+        else
+        {
+            editor.remove(volType);
+        }
+
+        editor.apply();
+    }
+
+    private int getVolumeProgress(String key)
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SOUND_VOLUME_SHARED_PREFS, MODE_PRIVATE);
+        return sharedPreferences.getInt(key, -1);
     }
 
     private void startHomeWatch()
@@ -131,10 +146,7 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
             }
 
             @Override
-            public void onHomeLongPressed()
-            {
-
-            }
+            public void onHomeLongPressed(){}
         });
 
         this.homeWatcher.startWatch();
@@ -169,7 +181,7 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
 
     private void setUnlockAndLock()
     {
-        if (isMediaLockStatus())
+        if (getVolumeProgress(MEDIA_VOLUME) != -1)
         {
             mediaLockButton.setBackgroundResource(R.drawable.ic_lock);
         }
@@ -178,7 +190,7 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
             mediaLockButton.setBackgroundResource(R.drawable.ic_unlock);
         }
 
-        if (isCallLockStatus())
+        if (getVolumeProgress(CALL_VOLUME) != -1)
         {
             callLockButton.setBackgroundResource(R.drawable.ic_lock);
         }
@@ -187,7 +199,7 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
             callLockButton.setBackgroundResource(R.drawable.ic_unlock);
         }
 
-        if (isAlarmLockStatus())
+        if (getVolumeProgress(ALARM_VOLUME) != -1)
         {
             alarmLockButton.setBackgroundResource(R.drawable.ic_lock);
         }
@@ -196,7 +208,7 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
             alarmLockButton.setBackgroundResource(R.drawable.ic_unlock);
         }
 
-        if (isRingLockStatus())
+        if (getVolumeProgress(RING_VOLUME) != -1)
         {
             ringLockButton.setBackgroundResource(R.drawable.ic_lock);
         }

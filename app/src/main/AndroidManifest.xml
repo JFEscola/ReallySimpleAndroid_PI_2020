@@ -45,7 +45,10 @@
             android:name=".activities.ContactListActivity"
             android:label="Contactos" />
         <activity android:name=".activities.ContactActivity" />
-
+        <service android:name=".SoundLockService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
         <receiver android:name=".StartActivityOnBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

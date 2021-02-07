@@ -40,9 +40,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import pt.ipbeja.estig.reallysimpleandroid.GlobalBroadcastReceiver;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.SecurePreferences;
+import pt.ipbeja.estig.reallysimpleandroid.SoundLockService;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
@@ -63,9 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Contact> favContacts;
     private int REQUEST_PHONE_CALL = 1;
     private SecurePreferences securePreferences;
-
-    //TODO terminar o BroadCast
-    GlobalBroadcastReceiver globalBroadcastReceiver = new GlobalBroadcastReceiver();
 
     TelephonyManager mTelephonyManager;
     MyPhoneStateListener mPhoneStateListener;
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
 
-
+        startService(new Intent(getApplicationContext(), SoundLockService.class));
     }
 
     private boolean checkPermission(String permission)
