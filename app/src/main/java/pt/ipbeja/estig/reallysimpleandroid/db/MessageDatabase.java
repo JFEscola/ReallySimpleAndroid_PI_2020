@@ -12,7 +12,7 @@ import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
-@Database(entities = {Contact.class, ChatMessage.class, Medicine.class}, version = 2, exportSchema = false)
+@Database(entities = {Contact.class, ChatMessage.class, Medicine.class}, version = 1, exportSchema = false)
 public abstract class MessageDatabase extends RoomDatabase {
 
     private static MessageDatabase INSTANCE = null;

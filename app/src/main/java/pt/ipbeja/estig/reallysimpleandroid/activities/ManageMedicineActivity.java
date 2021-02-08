@@ -23,17 +23,16 @@ import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
 public class ManageMedicineActivity extends AppCompatActivity {
 
-    FloatingActionButton addMedicine;
-    RecyclerView recyclerView;
-    MedicineAdapter adapter;
-    List<Medicine> list;
+    private RecyclerView recyclerView;
+    private MedicineAdapter adapter;
+    private List<Medicine> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_medicine);
 
-        this.addMedicine = findViewById(R.id.addMedicineBtn);
+        FloatingActionButton addMedicine = findViewById(R.id.addMedicineBtn);
         this.recyclerView = findViewById(R.id.medicine_recycler_view_admin);
         this.list = new ArrayList<>();
 
@@ -61,7 +60,6 @@ public class ManageMedicineActivity extends AppCompatActivity {
         this.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
         this.recyclerView.setAdapter(this.adapter);
 
-
     }
 
     private void setList(){
@@ -71,7 +69,6 @@ public class ManageMedicineActivity extends AppCompatActivity {
             medicine = MessageDatabase.getINSTANCE(getApplicationContext()).medicineDao().getAll().get(i);
             this.list.add(medicine);
         }
-
     }
 
 }

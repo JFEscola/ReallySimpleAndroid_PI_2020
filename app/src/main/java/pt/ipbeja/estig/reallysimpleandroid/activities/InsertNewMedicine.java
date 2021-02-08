@@ -8,9 +8,11 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -24,6 +26,7 @@ public class InsertNewMedicine extends AppCompatActivity {
     private static TextView showMedicineTime;
     private static Button selectMedicineTime;
     private static Button confirmInsert;
+    private CheckBox monday, tuesday, wednesday, thursday, friday, saturday, sunday;
 
 
     @Override
@@ -35,6 +38,14 @@ public class InsertNewMedicine extends AppCompatActivity {
         showMedicineTime = findViewById(R.id.show_medicine_time);
         selectMedicineTime = findViewById(R.id.select_medicine_time);
         confirmInsert = findViewById(R.id.confirm_medicine_insert);
+        this.monday = findViewById(R.id.monday_checkBox_id);
+        this.tuesday = findViewById(R.id.tuesday_checkBox_id);
+        this.wednesday = findViewById(R.id.wednesday_checkBox_id);
+        this.thursday = findViewById(R.id.thursday_checkBox_id);
+        this.friday = findViewById(R.id.friday_checkBox_id);
+        this.saturday = findViewById(R.id.saturday_checkBox_id);
+        this.sunday = findViewById(R.id.sunday_checkBox_id);
+
         confirmInsert.setEnabled(false);
 
         selectMedicineTime.setOnClickListener(v ->
@@ -44,16 +55,56 @@ public class InsertNewMedicine extends AppCompatActivity {
 
         confirmInsert.setOnClickListener(v ->
         {
+
             insertData();
         });
 
     }
 
+    /**
+     * Method to insert medicine into the data base
+     * gets the name and time selected
+     * check for the check boxs isChecked
+     * and add creates a medicine with the given information into the database
+     */
     private void insertData() {
         String name = medicineName.getText().toString();
         String time = showMedicineTime.getText().toString();
-        Medicine medicine = new Medicine(0, name, time);
+        boolean monday = false;
+        boolean tuesday = false;
+        boolean wednesday = false;
+        boolean thursday = false;
+        boolean friday = false;
+        boolean saturday = false;
+        boolean sunday = false;
+
+        if(this.monday.isChecked()){
+            monday = true;
+        }
+        if(this.tuesday.isChecked()){
+            tuesday = true;
+        }
+        if(this.wednesday.isChecked()){
+            wednesday = true;
+        }
+        if(this.thursday.isChecked()){
+             thursday = true;
+        }
+        if(this.friday.isChecked()){
+             friday = true;
+        }
+        if(this.saturday.isChecked()){
+             saturday = true;
+        }
+        if(this.sunday.isChecked()){
+             sunday = true;
+        }
+
+        // creates new object with given information
+        Medicine medicine = new Medicine(0, name, time, monday,tuesday,wednesday,thursday,friday,saturday,sunday);
         MessageDatabase.getINSTANCE(getApplicationContext()).medicineDao().insert(medicine);
+        Toast.makeText(this, "Adicionado com sucesso!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     /**
