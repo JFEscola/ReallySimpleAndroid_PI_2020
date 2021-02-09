@@ -61,10 +61,7 @@ public class MessagesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onHomeLongPressed()
-            {
-
-            }
+            public void onHomeLongPressed() {}
         });
 
         this.homeWatcher.startWatch();

@@ -120,8 +120,10 @@
         android:id="@+id/button_emergency"
         android:layout_width="match_parent"
         android:layout_height="66dp"
+        android:background="@color/red"
         android:onClick="onButtonClicked"
-        android:text="! EMERGÊNCIA !" />
+        android:text="! EMERGÊNCIA !"
+        android:textSize="24sp" />
 
     <Switch
         android:id="@+id/button_toggle"

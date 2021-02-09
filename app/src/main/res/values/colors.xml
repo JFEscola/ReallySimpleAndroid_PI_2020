@@ -8,5 +8,6 @@
     <color name="light_gray">#F3F3F3</color>
     <color name="background">#829CFF</color>
     <color name="text">#1D1D1D</color>
+    <color name="red">#ff0000</color>
 
 </resources>

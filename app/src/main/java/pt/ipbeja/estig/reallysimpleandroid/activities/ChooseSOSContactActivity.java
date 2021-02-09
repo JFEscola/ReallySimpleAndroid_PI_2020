@@ -1,11 +1,14 @@
 package pt.ipbeja.estig.reallysimpleandroid.activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,9 +26,11 @@ import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 public class ChooseSOSContactActivity extends AppCompatActivity
 {
     private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager manager;
     private ContactsListAdapter adapter;
     private MessageDatabase db;
     private HomeWatcher homeWatcher = new HomeWatcher(this);
+    private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -37,17 +42,14 @@ public class ChooseSOSContactActivity extends AppCompatActivity
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Escolher Contacto SOS");
 
-        //TODO METER A PERMIÇÕES A FUNCIONAR COMO A ContactListActivity PORQUE SE ASSIM NÃO FOR OS
-        // CONTACTOS NÃO VÃO APARECER LOGO, TEM QUE SE IR BUSCAR A PERMIÇÃO PRIMEIRO À ContactListActivity (Contactos)
-
-        //TODO fazer com que a interface associada a esta class fique em fullscreeen como as outras
-
         this.db = MessageDatabase.getINSTANCE(this);
         this.recyclerView = findViewById(R.id.recyclerView_contacts_list);
-        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<Contact> contacts = db.contactDao().getAll();
-        this.adapter = new ContactsListAdapter(this, contacts, "chooseSOSContactActivity");
+        this.manager = new LinearLayoutManager(this);
+
+        getContacts();
+
         this.recyclerView.setAdapter(adapter);
+        this.recyclerView.setLayoutManager(this.manager);
 
         this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
         {
@@ -66,9 +68,38 @@ public class ChooseSOSContactActivity extends AppCompatActivity
 
         this.homeWatcher.startWatch();
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         System.out.println("#### CHOOSE SOS C A ####");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void getContacts()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+        }
+        else
+        {
+            List<Contact> contacts = db.contactDao().getAll();
+            this.adapter = new ContactsListAdapter(this, contacts, "chooseSOSContactActivity");
+        }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                getContacts();
+            }
+        }
+    }
 
     public void onHomeClicked(View view)
     {

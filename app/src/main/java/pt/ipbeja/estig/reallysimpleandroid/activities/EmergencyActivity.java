@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,6 +38,8 @@ public class EmergencyActivity extends AppCompatActivity
     private Button sosContact2;
     private List<Contact> sosContacts;
     private SharedPreferences sharedPref;
+    private static final int REQUEST_PHONE_CALL = 1;
+    private String currentContact;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -53,29 +58,32 @@ public class EmergencyActivity extends AppCompatActivity
         sosContact1 = findViewById(R.id.sosContact1);
         sosContact2 = findViewById(R.id.sosContact2);
 
-        //TODO SÓ CONSEGUE LIGAR DEPOIS DE LIGAR PRIMEIRO A UM CONTACTO DE FORMA NORMAL
-        // FALTA IMPLEMENTAR A PERMIÇÃO DE LIGAR ASSIM QUE SE ABRE A ACTIVIDADE DO BOTÃO DE EMERGENCIA
-
-        //TODO fazer com que a interface associada a esta class fiquem em fullscreeen comoas outras
-
         sosButton.setOnClickListener(v -> {
-            Intent callSOS = new Intent(Intent.ACTION_CALL);
-            callSOS.setData(Uri.parse("tel:" + "112"));
-            startActivity(callSOS);
+            callAndMessage("112");
+            currentContact = "112";
         });
 
         sosContact1.setOnClickListener(v -> {
-            callAndMessage(sosContacts.get(0));
+            callAndMessage(sosContacts.get(0).getPhoneNumber());
+            currentContact = sosContacts.get(0).getPhoneNumber();
         });
 
         sosContact2.setOnClickListener(v -> {
-            callAndMessage(sosContacts.get(1));
+            callAndMessage(sosContacts.get(1).getPhoneNumber());
+            currentContact = sosContacts.get(1).getPhoneNumber();
         });
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         checkForSosContacts();
         startHomeWatcher();
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
 
     public void onHomeClicked(View view)
     {
@@ -131,13 +139,30 @@ public class EmergencyActivity extends AppCompatActivity
         }).start();
     }
 
-    private void callAndMessage(Contact contact)
+    private void callAndMessage(String contact)
     {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(contact.getPhoneNumber(), null, "Urgente", null, null);
+        if (!contact.equals("112"))
+        {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(contact, null, "Urgente", null, null);
+        }
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
+        }
+        else
+        {
+            Intent callSOS = new Intent(Intent.ACTION_CALL);
+            callSOS.setData(Uri.parse("tel:" + contact));
+            startActivity(callSOS);
+        }
+    }
+
+    private void callCurrentContact()
+    {
         Intent callSOS = new Intent(Intent.ACTION_CALL);
-        callSOS.setData(Uri.parse("tel:" + contact.getPhoneNumber()));
+        callSOS.setData(Uri.parse("tel:" + currentContact));
         startActivity(callSOS);
     }
 
@@ -162,4 +187,15 @@ public class EmergencyActivity extends AppCompatActivity
         this.homeWatcher.startWatch();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if (requestCode == REQUEST_PHONE_CALL)
+        {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                callCurrentContact();
+            }
+        }
+    }
 }

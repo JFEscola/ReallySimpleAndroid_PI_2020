@@ -85,6 +85,7 @@ public class ManageSOS extends AppCompatActivity
             //TODO falta a cena de tocar no homekey (HomeWatcher N Stuff)
         });
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         checkForSosContacts();
     }
 
@@ -92,6 +93,7 @@ public class ManageSOS extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         checkForSosContacts();
     }
 

@@ -17,22 +17,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ChangeOrDeleteMedicineActivity"></activity>
-        <activity android:name=".activities.InsertNewMedicine" />
-        <activity android:name=".activities.ManageMedicineActivity" />
-        <activity android:name=".activities.MedicineActivity" />
-        <activity android:name=".activities.ManageDeviceVolumeActivity" />
-        <activity android:name=".activities.ChooseSOSContactActivity" />
-        <activity android:name=".activities.ManageSOS" />
-        <activity android:name=".activities.EmergencyActivity" />
-        <activity android:name=".activities.ManageFavContactsActivity" />
-        <activity android:name=".activities.ContactsSettingsActivity" />
-        <activity android:name=".activities.ManageAppsActivity" />
-        <activity android:name=".activities.MessagesActivity" />
-        <activity android:name=".activities.MenuActivity" />
-        <activity android:name=".activities.MessageChatActivity" />
-        <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.ChangeOrDeleteMedicineActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.InsertNewMedicine"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ManageMedicineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MedicineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ManageDeviceVolumeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ChooseSOSContactActivity"
+            android:label="Contactos"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ManageSOS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.EmergencyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ManageFavContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ContactsSettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ManageAppsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MessagesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MessageChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,12 +80,17 @@
         </activity>
         <activity
             android:name=".activities.ContactListActivity"
-            android:label="Contactos" />
-        <activity android:name=".activities.ContactActivity" />
-        <service android:name=".SoundLockService"
+            android:label="Contactos"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ContactActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".SoundLockService"
             android:enabled="true"
-            android:exported="true">
-        </service>
+            android:exported="true"></service>
+
         <receiver android:name=".StartActivityOnBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
