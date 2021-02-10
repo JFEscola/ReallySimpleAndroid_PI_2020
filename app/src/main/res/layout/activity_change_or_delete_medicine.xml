@@ -1,58 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ChangeOrDeleteMedicineActivity"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".activities.ChangeOrDeleteMedicineActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="36dp"
-        android:textAlignment="center"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bar"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
+        >
+
+        <ImageButton
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_rect"
+            android:backgroundTint="#1DE9B6"
+            android:elevation="3dp"
+            android:onClick="onHomeClicked"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_home_black_24dp" />
+
+        <TextView
+            android:id="@+id/activityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif"
+            android:text="Titulo"
+            android:textAlignment="textStart"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/homeButton"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <EditText
-            android:id="@+id/medicine_show_id"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:textSize="25dp"
-            android:textColor="@color/black"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer_show_id">
 
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/thursday_text_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Q"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/wednesday_text_id"
+            tools:layout_editor_absoluteY="16dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/monday_text_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="28dp"
+            android:gravity="center"
+            android:text="S"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-            android:id="@+id/timer_show_id"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
+        <TextView
+            android:id="@+id/tuesday_text_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="T"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/monday_text_id"
+            tools:layout_editor_absoluteY="16dp" />
 
-            android:textSize="25dp"
-            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/wednesday_text_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Q"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/tuesday_text_id"
+            tools:layout_editor_absoluteY="16dp" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/saturday_text_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="S"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/friday_text_id"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/sunday_text_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="D"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/saturday_text_id"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <CheckBox
+            android:id="@+id/sunday_checkBox_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@+id/saturday_checkBox_id"
+            app:layout_constraintTop_toBottomOf="@+id/sunday_text_id" />
+
+        <CheckBox
+            android:id="@+id/saturday_checkBox_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@+id/friday_checkBox_id"
+            app:layout_constraintTop_toBottomOf="@+id/saturday_text_id" />
+
+        <CheckBox
+            android:id="@+id/friday_checkBox_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@+id/thursday_checkBox_id"
+            app:layout_constraintTop_toBottomOf="@+id/friday_text_id" />
+
+        <CheckBox
+            android:id="@+id/thursday_checkBox_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@+id/wednesday_checkBox_id"
+            app:layout_constraintTop_toBottomOf="@+id/thursday_text_id" />
+
+        <CheckBox
+            android:id="@+id/wednesday_checkBox_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@+id/tuesday_checkBox_id"
+            app:layout_constraintTop_toBottomOf="@+id/wednesday_text_id" />
+
+        <CheckBox
+            android:id="@+id/monday_checkBox_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/monday_text_id" />
+
+        <CheckBox
+            android:id="@+id/tuesday_checkBox_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@+id/monday_checkBox_id"
+            app:layout_constraintTop_toBottomOf="@+id/tuesday_text_id" />
+
+        <TextView
+            android:id="@+id/friday_text_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="S"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/thursday_text_id"
+            tools:layout_editor_absoluteY="16dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/update_medicine_id"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="Atualizar"/>
+        android:layout_marginTop="24dp"
+        android:text="Atualizar"
+        app:layout_constraintBottom_toTopOf="@+id/delete_medicine_id"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8"
+        tools:layout_editor_absoluteX="166dp" />
 
     <Button
         android:id="@+id/delete_medicine_id"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="Apagar"/>
+        android:layout_marginTop="8dp"
+        android:text="Apagar"
+        app:layout_constraintTop_toBottomOf="@+id/update_medicine_id"
+        tools:layout_editor_absoluteX="166dp" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/medicine_show_id"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar" />
+
+    <EditText
+        android:id="@+id/timer_show_id"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medicine_show_id" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -101,7 +101,6 @@ public class SoundLockService extends Service
         alertTimer.scheduleAtFixedRate(timerTaskAlert,0, 60000);
 
         return START_STICKY;
-
     }
 
     private void checkForAlertTimer(Boolean isDay, String dayOfWeek, String time, String name){
