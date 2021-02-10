@@ -22,12 +22,12 @@ import java.util.TimerTask;
 import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
-public class SoundLockService extends Service
+public class RSAService extends Service
 {
     private static final String SOUND_VOLUME_SHARED_PREFS = "soundvolume";
     AudioManager audioManager;
 
-    public SoundLockService() {}
+    public RSAService() {}
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)

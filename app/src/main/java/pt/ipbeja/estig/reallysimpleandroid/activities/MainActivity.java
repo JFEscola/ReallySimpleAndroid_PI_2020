@@ -42,7 +42,7 @@ import java.util.Objects;
 
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.SecurePreferences;
-import pt.ipbeja.estig.reallysimpleandroid.SoundLockService;
+import pt.ipbeja.estig.reallysimpleandroid.RSAService;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
 
-        startService(new Intent(getApplicationContext(), SoundLockService.class));
+        startService(new Intent(getApplicationContext(), RSAService.class));
     }
 
     private boolean checkPermission(String permission)

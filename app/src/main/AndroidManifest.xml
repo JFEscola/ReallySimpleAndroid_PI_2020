@@ -87,7 +87,7 @@
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".SoundLockService"
+            android:name=".RSAService"
             android:enabled="true"
             android:exported="true"></service>
 
