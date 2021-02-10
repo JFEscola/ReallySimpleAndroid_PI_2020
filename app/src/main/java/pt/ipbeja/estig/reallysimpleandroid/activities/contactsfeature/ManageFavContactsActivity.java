@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.contactsfeature;
 
 import android.content.Intent;
 import android.os.Build;
@@ -11,28 +11,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import pt.ipbeja.estig.reallysimpleandroid.AppListAdapter;
+import java.util.List;
+
+import pt.ipbeja.estig.reallysimpleandroid.ContactsListAdapter;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
+import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
+import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 /**
- * The type Manage apps activity.
+ * The type Manage fav contacts activity.
  */
-public class ManageAppsActivity extends AppCompatActivity {
+public class ManageFavContactsActivity extends AppCompatActivity {
 
-    private RecyclerView appListRecyclerView;
-
+    private RecyclerView recyclerView;
+    private ContactsListAdapter adapter;
+    private Database db;
     private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_apps);
+        setContentView(R.layout.activity_manage_fav_contacts);
 
         TextView title = findViewById(R.id.activityTitle);
-        title.setText("Gerir Aplicações");
+        title.setText("Contactos Favoritos");
+
+        this.db = Database.getINSTANCE(this);
+        this.recyclerView = findViewById(R.id.recyclerView_contacts_list);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<Contact> contacts = db.contactDao().getAll();
+        this.adapter = new ContactsListAdapter(this, contacts, "manageFavContactsActivity");
+        this.recyclerView.setAdapter(adapter);
 
         this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
         {
@@ -51,10 +64,7 @@ public class ManageAppsActivity extends AppCompatActivity {
 
         this.homeWatcher.startWatch();
 
-        appListRecyclerView = findViewById(R.id.recyclerView_allowed_apps_list);
-        appListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        AppListAdapter adapter = new AppListAdapter(this);
-        appListRecyclerView.setAdapter(adapter);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
     @Override
@@ -69,16 +79,12 @@ public class ManageAppsActivity extends AppCompatActivity {
         startActivity(goHome);
         finish();
     }
-    
+
     public void homeKeyClick()
     {
         this.homeWatcher.stopWatch();
         Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
         startActivity(goHome);
         finish();
-    }
-
-    public void onClick(View view)
-    {
     }
 }

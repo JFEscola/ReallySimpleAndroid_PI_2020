@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.medicinefeature;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.MedicineAdapter;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
+import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 

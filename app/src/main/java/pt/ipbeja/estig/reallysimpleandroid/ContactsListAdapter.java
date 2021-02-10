@@ -22,7 +22,7 @@ import java.util.List;
 
 import pt.ipbeja.estig.reallysimpleandroid.Utils.ContactComparator;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
-import pt.ipbeja.estig.reallysimpleandroid.activities.ContactActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.contactsfeature.ContactActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 /**

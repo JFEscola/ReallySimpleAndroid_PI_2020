@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.messagesfeature;
 
 import  android.content.Context;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import java.util.Objects;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
+import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;

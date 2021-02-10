@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.messagesfeature;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

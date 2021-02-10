@@ -44,6 +44,12 @@ import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.SecurePreferences;
 import pt.ipbeja.estig.reallysimpleandroid.RSAService;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
+import pt.ipbeja.estig.reallysimpleandroid.activities.applistfeature.MenuActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.contactsfeature.ContactListActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.medicinefeature.MedicineActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.messagesfeature.MessageChatActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.messagesfeature.MessagesActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.sosfeature.EmergencyActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 /**

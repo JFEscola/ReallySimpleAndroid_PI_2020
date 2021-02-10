@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activities.ChangeOrDeleteMedicineActivity">
+    tools:context=".activities.medicinefeature.ChangeOrDeleteMedicineActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bar"

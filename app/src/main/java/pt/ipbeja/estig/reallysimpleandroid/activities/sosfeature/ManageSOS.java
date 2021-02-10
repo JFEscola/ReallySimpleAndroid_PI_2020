@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.sosfeature;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
+import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 public class ManageSOS extends AppCompatActivity
@@ -81,24 +82,9 @@ public class ManageSOS extends AppCompatActivity
                 nameCnt2.setText("...");
                 numberCnt2.setText("...");
             }
-
-            //TODO falta a cena de tocar no homekey (HomeWatcher N Stuff)
         });
 
-        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
-        {
-            @Override
-            public void onHomePressed()
-            {
-                homeKeyClick();
-            }
-
-            @Override
-            public void onHomeLongPressed()
-            {
-
-            }
-        });
+        homeWatcherListener();
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         checkForSosContacts();
@@ -121,6 +107,10 @@ public class ManageSOS extends AppCompatActivity
         finish();
     }
 
+    /**
+     * removes the sos status from a contact
+     * @param index of the sos contact list
+     */
     private void removeContactToSos(int index)
     {
         this.sharedPref = this.getSharedPreferences("sosContactsList", Context.MODE_PRIVATE);
@@ -134,6 +124,9 @@ public class ManageSOS extends AppCompatActivity
         System.out.println("#### TIRASTE DO SOS ####");
     }
 
+    /**
+     * checks for sos contacts and displays them on the interface
+     */
     private void checkForSosContacts()
     {
         List<TextView> nameContactList = new ArrayList<>();
@@ -179,5 +172,23 @@ public class ManageSOS extends AppCompatActivity
         Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
         startActivity(goHome);
         finish();
+    }
+
+    private void homeWatcherListener()
+    {
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
     }
 }

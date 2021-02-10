@@ -18,47 +18,47 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.ChangeOrDeleteMedicineActivity"
+            android:name=".activities.medicinefeature.ChangeOrDeleteMedicineActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".activities.InsertNewMedicine"
+            android:name=".activities.medicinefeature.InsertNewMedicine"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ManageMedicineActivity"
+            android:name=".activities.medicinefeature.ManageMedicineActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MedicineActivity"
+            android:name=".activities.medicinefeature.MedicineActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ManageDeviceVolumeActivity"
+            android:name=".activities.lockvolumefeature.ManageDeviceVolumeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ChooseSOSContactActivity"
+            android:name=".activities.sosfeature.ChooseSOSContactActivity"
             android:label="Contactos"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ManageSOS"
+            android:name=".activities.sosfeature.ManageSOS"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.EmergencyActivity"
+            android:name=".activities.sosfeature.EmergencyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ManageFavContactsActivity"
+            android:name=".activities.contactsfeature.ManageFavContactsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ContactsSettingsActivity"
+            android:name=".activities.contactsfeature.ContactsSettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ManageAppsActivity"
+            android:name=".activities.applistfeature.ManageAppsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MessagesActivity"
+            android:name=".activities.messagesfeature.MessagesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MenuActivity"
+            android:name=".activities.applistfeature.MenuActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MessageChatActivity"
+            android:name=".activities.messagesfeature.MessageChatActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SettingsActivity"
@@ -79,11 +79,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ContactListActivity"
+            android:name=".activities.contactsfeature.ContactListActivity"
             android:label="Contactos"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ContactActivity"
+            android:name=".activities.contactsfeature.ContactActivity"
             android:screenOrientation="portrait" />
 
         <service
@@ -98,7 +98,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".activities.SMSReceiver"
+            android:name=".activities.messagesfeature.SMSReceiver"
             android:exported="true">
             <intent-filter android:priority="1000">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />

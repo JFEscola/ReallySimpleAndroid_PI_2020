@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.sosfeature;
 
 import android.Manifest;
 import android.content.Context;
@@ -28,6 +28,7 @@ import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
+import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 public class EmergencyActivity extends AppCompatActivity
@@ -101,6 +102,9 @@ public class EmergencyActivity extends AppCompatActivity
         finish();
     }
 
+    /**
+     * checks for contacts with the SOS shared preference and shows them on the interface
+     */
     private void checkForSosContacts()
     {
         List<Button> cntBtns = new ArrayList<>();
@@ -139,6 +143,10 @@ public class EmergencyActivity extends AppCompatActivity
         }).start();
     }
 
+    /**
+     * messages and calls the number chosen
+     * @param contact is the contact number
+     */
     private void callAndMessage(String contact)
     {
         if (!contact.equals("112"))
@@ -159,6 +167,9 @@ public class EmergencyActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * calls the current selected contact (only used when the user hans't give permission already)
+     */
     private void callCurrentContact()
     {
         Intent callSOS = new Intent(Intent.ACTION_CALL);

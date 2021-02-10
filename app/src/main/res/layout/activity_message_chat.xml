@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="2dp"
-    tools:context=".activities.MessageChatActivity">
+    tools:context=".activities.messagesfeature.MessageChatActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bar"
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bar"
-        tools:context=".activities.MessageChatActivity">
+        tools:context=".activities.messagesfeature.MessageChatActivity">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.lockvolumefeature;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
+import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
 
 public class ManageDeviceVolumeActivity extends AppCompatActivity
 {
@@ -43,7 +44,6 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
 
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Gerir Volume");
-
 
         startHomeWatch();
 
@@ -74,6 +74,9 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         setUnlockAndLock();
     }
 
+    /**
+     * Sets the max value of the seekebars equal to the max value of the volume of each kind of sound
+     */
     private void setMaxVolumes()
     {
         mediaSeekBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
@@ -82,6 +85,10 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         ringSeekBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_RING));
     }
 
+
+    /**
+     * Sets the progress of each seekbar equal to the current value of the volume of each kind of sound
+     */
     private void setVolumeProgressOnView()
     {
         mediaSeekBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
@@ -111,6 +118,12 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         finish();
     }
 
+    /**
+     * Locks and unlocks the capability of changing system sound volumes
+     * @param volType tells which kind/type of sound is being locked ou unlocked
+     * @param volAmount tells the value of the sound volume that is being locked at
+     * @param volTypeStatus tells if its locked or unlocked
+     */
     private void setLockedOnSharedPrefs(String volType, int volAmount, boolean volTypeStatus)
     {
         SharedPreferences sharedPreferences = getSharedPreferences(SOUND_VOLUME_SHARED_PREFS, MODE_PRIVATE);
@@ -129,6 +142,11 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         editor.apply();
     }
 
+    /**
+     * gets the value of the locked volume
+     * @param key tells the kind of volume
+     * @return the amount at which the volume is locked
+     */
     private int getVolumeProgress(String key)
     {
         SharedPreferences sharedPreferences = getSharedPreferences(SOUND_VOLUME_SHARED_PREFS, MODE_PRIVATE);
@@ -152,6 +170,9 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         this.homeWatcher.startWatch();
     }
 
+    /**
+     * applies the action of the lock icon when pressed
+     */
     public void onClick(View v)
     {
         System.out.println("## TOCOU Lock ##");
@@ -179,6 +200,9 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         setUnlockAndLock();
     }
 
+    /**
+     * Set the lock icon on the display
+     */
     private void setUnlockAndLock()
     {
         if (getVolumeProgress(MEDIA_VOLUME) != -1)
@@ -218,6 +242,9 @@ public class ManageDeviceVolumeActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Handles the volume change on the seekbar
+     */
     private void setSeekBarListeners()
     {
         this.mediaSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()

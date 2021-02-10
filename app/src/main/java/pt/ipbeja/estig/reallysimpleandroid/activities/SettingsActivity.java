@@ -14,6 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
+import pt.ipbeja.estig.reallysimpleandroid.activities.applistfeature.ManageAppsActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.contactsfeature.ContactsSettingsActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.lockvolumefeature.ManageDeviceVolumeActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.medicinefeature.ManageMedicineActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.sosfeature.ManageSOS;
 
 /**
  * The type Settings activity.

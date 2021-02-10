@@ -34,6 +34,9 @@ public class RSAService extends Service
     {
         Timer timer = new Timer();
 
+        /**
+        * This task checks if there is any audio volume lock, compares with the current volume set, and sets the volume equal to what is saved
+        */
         TimerTask timerTask = new TimerTask()
         {
             @Override
@@ -70,6 +73,9 @@ public class RSAService extends Service
             }
         };
 
+        /**
+         * sets the previous task to run each 3 seconds
+         */
         timer.scheduleAtFixedRate(timerTask, 0, 3000);
 
 

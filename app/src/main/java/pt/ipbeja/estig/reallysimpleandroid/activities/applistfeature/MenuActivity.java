@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.reallysimpleandroid.activities;
+package pt.ipbeja.estig.reallysimpleandroid.activities.applistfeature;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,6 +23,8 @@ import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.SecurePreferences;
+import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.SettingsActivity;
 
 /**
  * The type Menu activity.

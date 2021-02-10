@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import pt.ipbeja.estig.reallysimpleandroid.activities.ChangeOrDeleteMedicineActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.medicinefeature.ChangeOrDeleteMedicineActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
 

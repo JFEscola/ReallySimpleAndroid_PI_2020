@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:clickable="false"
     android:focusable="true"
-    tools:context=".activities.MenuActivity">
+    tools:context=".activities.applistfeature.MenuActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bar"
