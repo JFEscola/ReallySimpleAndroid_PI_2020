@@ -238,8 +238,9 @@
         android:layout_marginTop="24dp"
         android:text="Atualizar"
         app:layout_constraintBottom_toTopOf="@+id/delete_medicine_id"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8"
-        tools:layout_editor_absoluteX="166dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8" />
 
     <Button
         android:id="@+id/delete_medicine_id"
@@ -247,8 +248,9 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:text="Apagar"
-        app:layout_constraintTop_toBottomOf="@+id/update_medicine_id"
-        tools:layout_editor_absoluteX="166dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_medicine_id" />
 
     <EditText
         android:id="@+id/medicine_show_id"

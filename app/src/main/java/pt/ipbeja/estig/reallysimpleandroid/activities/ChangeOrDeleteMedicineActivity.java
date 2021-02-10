@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,9 @@ public class ChangeOrDeleteMedicineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_or_delete_medicine);
+
+        TextView title = findViewById(R.id.activityTitle);
+        title.setText("Editar ou Apagar Med");
 
         this.medicine = findViewById(R.id.medicine_show_id);
         this.time = findViewById(R.id.timer_show_id);

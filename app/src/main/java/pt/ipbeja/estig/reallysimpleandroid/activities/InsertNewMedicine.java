@@ -1,10 +1,8 @@
 package pt.ipbeja.estig.reallysimpleandroid.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,14 +12,20 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
 import java.util.Calendar;
 
+import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
+import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
 public class InsertNewMedicine extends AppCompatActivity {
 
+    private HomeWatcher homeWatcher  = new HomeWatcher(this);
     private static EditText medicineName;
     private static TextView showMedicineTime;
     private static Button selectMedicineTime;
@@ -33,6 +37,9 @@ public class InsertNewMedicine extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_new_medicine);
+
+        TextView title = findViewById(R.id.activityTitle);
+        title.setText("Criar Alerta");
 
         medicineName = findViewById(R.id.insert_medicine_name);
         showMedicineTime = findViewById(R.id.show_medicine_time);
@@ -59,6 +66,8 @@ public class InsertNewMedicine extends AppCompatActivity {
             insertData();
         });
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        startHomeWatcher();
     }
 
     /**
@@ -116,6 +125,41 @@ public class InsertNewMedicine extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
+    public void onHomeClicked(View view)
+    {
+        Intent goHome = new Intent(view.getContext(), MainActivity.class);
+        goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
+    }
+
+    public void homeKeyClick()
+    {
+        this.homeWatcher.stopWatch();
+        Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
+        startActivity(goHome);
+        finish();
+    }
+
+    private void startHomeWatcher()
+    {
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
+
+        this.homeWatcher.startWatch();
+    }
 
     /**
      * inner class for time picker
