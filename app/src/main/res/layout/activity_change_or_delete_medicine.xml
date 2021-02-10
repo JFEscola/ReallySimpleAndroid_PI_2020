@@ -241,13 +241,15 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="Atualizar"
-            app:layout_constraintBottom_toTopOf="@+id/delete_medicine_id" />
+            app:layout_constraintBottom_toTopOf="@+id/delete_medicine_id"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/delete_medicine_id"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="Apagar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_medicine_id" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
