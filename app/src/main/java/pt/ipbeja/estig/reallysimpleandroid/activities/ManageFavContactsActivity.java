@@ -17,7 +17,7 @@ import pt.ipbeja.estig.reallysimpleandroid.ContactsListAdapter;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 /**
@@ -27,7 +27,7 @@ public class ManageFavContactsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ContactsListAdapter adapter;
-    private MessageDatabase db;
+    private Database db;
     private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -44,7 +44,7 @@ public class ManageFavContactsActivity extends AppCompatActivity {
 
         //TODO fazer com que a interface associada a esta class fiquem em fullscreeen como as outras
 
-        this.db = MessageDatabase.getINSTANCE(this);
+        this.db = Database.getINSTANCE(this);
         this.recyclerView = findViewById(R.id.recyclerView_contacts_list);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Contact> contacts = db.contactDao().getAll();

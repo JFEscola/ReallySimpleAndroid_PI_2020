@@ -21,7 +21,7 @@ import java.util.Objects;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
@@ -32,7 +32,7 @@ public class MessagesActivity extends AppCompatActivity {
 
     private RecyclerView list;
     private ConversationsAdapter adapter;
-    private MessageDatabase database;
+    private Database database;
     private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -46,7 +46,7 @@ public class MessagesActivity extends AppCompatActivity {
 
         this.list = findViewById(R.id.conversationsList);
         this.adapter = new ConversationsAdapter(this);
-        this.database = MessageDatabase.getINSTANCE(this);
+        this.database = Database.getINSTANCE(this);
 
         List<ChatMessage> lastMessageList = getLatestMessages();
         adapter.setData(lastMessageList);

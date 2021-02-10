@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Adapter;
 import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,7 +16,7 @@ import java.util.List;
 
 import pt.ipbeja.estig.reallysimpleandroid.MedicineAdapter;
 import pt.ipbeja.estig.reallysimpleandroid.R;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
 public class ManageMedicineActivity extends AppCompatActivity {
@@ -63,10 +61,10 @@ public class ManageMedicineActivity extends AppCompatActivity {
     }
 
     private void setList(){
-        int count = MessageDatabase.getINSTANCE(getApplicationContext()).medicineDao().getAll().size();
+        int count = Database.getINSTANCE(getApplicationContext()).medicineDao().getAll().size();
         Medicine medicine;
         for (int i = 0; i < count; i++) {
-            medicine = MessageDatabase.getINSTANCE(getApplicationContext()).medicineDao().getAll().get(i);
+            medicine = Database.getINSTANCE(getApplicationContext()).medicineDao().getAll().get(i);
             this.list.add(medicine);
         }
     }

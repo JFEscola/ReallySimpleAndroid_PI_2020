@@ -14,4 +14,5 @@ interface BaseDao<ENTITY> {
 
     @Delete
     int delete(ENTITY t);
+
 }

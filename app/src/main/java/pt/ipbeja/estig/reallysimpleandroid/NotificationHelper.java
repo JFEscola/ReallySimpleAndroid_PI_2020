@@ -5,6 +5,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -29,7 +31,7 @@ public class NotificationHelper extends ContextWrapper {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void createChannel() {
-        NotificationChannel channel = new NotificationChannel(channelId,channelName, NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
         channel.enableVibration(true);
         channel.enableLights(true);
         channel.setLightColor(R.color.colorPrimary);
@@ -52,8 +54,9 @@ public class NotificationHelper extends ContextWrapper {
      * @param time
      * @return
      */
-    public NotificationCompat.Builder getChannelNotification(String title, String time){
-        return new NotificationCompat.Builder(getApplicationContext(), channelId).setContentTitle(title).setContentText(time).setSmallIcon(R.drawable.ic_medicne_icon);
+    public NotificationCompat.Builder getNotification(String title, String time){
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        return new NotificationCompat.Builder(getApplicationContext(), channelId).setContentTitle(title).setContentText(time).setPriority(NotificationCompat.PRIORITY_HIGH).setSound(alarmSound).setSmallIcon(R.drawable.ic_medicne_icon);
     }
 
 

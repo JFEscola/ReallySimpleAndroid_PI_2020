@@ -2,7 +2,6 @@ package pt.ipbeja.estig.reallysimpleandroid.db;
 
 import android.content.Context;
 
-import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import pt.ipbeja.estig.reallysimpleandroid.db.dao.ContactDao;
@@ -12,15 +11,15 @@ import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
-@Database(entities = {Contact.class, ChatMessage.class, Medicine.class}, version = 1, exportSchema = false)
-public abstract class MessageDatabase extends RoomDatabase {
+@androidx.room.Database(entities = {Contact.class, ChatMessage.class, Medicine.class}, version = 1, exportSchema = false)
+public abstract class Database extends RoomDatabase {
 
-    private static MessageDatabase INSTANCE = null;
+    private static Database INSTANCE = null;
 
-    public static MessageDatabase getINSTANCE(final Context context){
+    public static Database getINSTANCE(final Context context){
 
         if (INSTANCE == null){
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), MessageDatabase.class, "sms-db")
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), Database.class, "sms-db")
                         .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()
                         .build();

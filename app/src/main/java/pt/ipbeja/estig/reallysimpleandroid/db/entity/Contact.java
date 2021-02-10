@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 import pt.ipbeja.estig.reallysimpleandroid.Utils.ContactComparator;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 
 /**
  * The type Contact.
@@ -175,7 +175,7 @@ public class Contact {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Contact> getContacts(Context context) {
         List<Contact> contacts = new ArrayList<>();
-        MessageDatabase database = MessageDatabase.getINSTANCE(context);
+        Database database = Database.getINSTANCE(context);
         ContentResolver contentResolver = context.getContentResolver();
         Cursor contactsCursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
                 null, null, null, null);

@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import pt.ipbeja.estig.reallysimpleandroid.R;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
 public class InsertNewMedicine extends AppCompatActivity {
@@ -102,7 +102,7 @@ public class InsertNewMedicine extends AppCompatActivity {
 
         // creates new object with given information
         Medicine medicine = new Medicine(0, name, time, monday,tuesday,wednesday,thursday,friday,saturday,sunday);
-        MessageDatabase.getINSTANCE(getApplicationContext()).medicineDao().insert(medicine);
+        Database.getINSTANCE(getApplicationContext()).medicineDao().insert(medicine);
         Toast.makeText(this, "Adicionado com sucesso!", Toast.LENGTH_SHORT).show();
         finish();
     }

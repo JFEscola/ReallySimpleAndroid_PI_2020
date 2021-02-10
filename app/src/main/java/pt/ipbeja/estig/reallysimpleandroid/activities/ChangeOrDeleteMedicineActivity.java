@@ -4,13 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import pt.ipbeja.estig.reallysimpleandroid.R;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
 public class ChangeOrDeleteMedicineActivity extends AppCompatActivity {
@@ -37,15 +36,15 @@ public class ChangeOrDeleteMedicineActivity extends AppCompatActivity {
         Medicine medicineToChange = (Medicine) intent.getSerializableExtra("medicine");
 
         delete.setOnClickListener(v -> {
-            MessageDatabase.getINSTANCE(getApplicationContext()).medicineDao().delete(medicineToChange);
+            Database.getINSTANCE(getApplicationContext()).medicineDao().delete(medicineToChange);
             Toast.makeText(this, "Apagado com sucesso!", Toast.LENGTH_SHORT).show();
             finish();
         });
 
         update.setOnClickListener(v -> {
             medicineToChange.setName(medicine.getText().toString());
-            medicineToChange.setTime(time.getText().toString());
-            MessageDatabase.getINSTANCE(getApplicationContext()).medicineDao().update(medicineToChange);
+          //  medicineToChange.setTime(time.getText().toString());
+            Database.getINSTANCE(getApplicationContext()).medicineDao().update(medicineToChange);
             Toast.makeText(this, "Actualizado com sucesso!", Toast.LENGTH_SHORT).show();
             finish();
         });

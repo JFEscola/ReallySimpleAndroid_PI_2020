@@ -7,17 +7,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 public class SMSReceiver extends BroadcastReceiver {
 
-    private MessageDatabase database;
+    private Database database;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        database = MessageDatabase.getINSTANCE(context);
+        database = Database.getINSTANCE(context);
         Bundle bundle = intent.getExtras();
         if(bundle != null) {
             Object[] pdus = (Object[]) bundle.get("pdus");

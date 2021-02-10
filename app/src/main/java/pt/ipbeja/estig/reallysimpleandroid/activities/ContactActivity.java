@@ -19,7 +19,7 @@ import androidx.cardview.widget.CardView;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 /**
@@ -45,7 +45,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Contacto");
 
-        contact = MessageDatabase.getINSTANCE(this).contactDao().get(getIntent().getExtras().getLong("contactId"));
+        contact = Database.getINSTANCE(this).contactDao().get(getIntent().getExtras().getLong("contactId"));
 
         this.callCard = findViewById(R.id.callContactCardView);
         this.callBtn = findViewById(R.id.callContactButton);

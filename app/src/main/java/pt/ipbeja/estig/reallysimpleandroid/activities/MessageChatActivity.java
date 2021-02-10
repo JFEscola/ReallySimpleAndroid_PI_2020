@@ -34,7 +34,7 @@ import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.ChatMessage;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
@@ -48,7 +48,7 @@ public class MessageChatActivity extends AppCompatActivity {
     private Button sendMsgButton;
     private EditText message;
     private Contact contact;
-    private MessageDatabase database;
+    private Database database;
     private List<ChatMessage> messageList;
     private RecyclerView list;
 
@@ -73,7 +73,7 @@ public class MessageChatActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Mensagens");
 
-        database = MessageDatabase.getINSTANCE(this);
+        database = Database.getINSTANCE(this);
         adapter = new MessageAdapter();
 
         contact = database.contactDao().get(getIntent().getExtras().getLong("contactId"));

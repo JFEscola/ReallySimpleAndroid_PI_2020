@@ -20,7 +20,7 @@ import pt.ipbeja.estig.reallysimpleandroid.ContactsListAdapter;
 import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
-import pt.ipbeja.estig.reallysimpleandroid.db.MessageDatabase;
+import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
 public class ChooseSOSContactActivity extends AppCompatActivity
@@ -28,7 +28,7 @@ public class ChooseSOSContactActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager manager;
     private ContactsListAdapter adapter;
-    private MessageDatabase db;
+    private Database db;
     private HomeWatcher homeWatcher = new HomeWatcher(this);
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
@@ -42,7 +42,7 @@ public class ChooseSOSContactActivity extends AppCompatActivity
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Escolher Contacto SOS");
 
-        this.db = MessageDatabase.getINSTANCE(this);
+        this.db = Database.getINSTANCE(this);
         this.recyclerView = findViewById(R.id.recyclerView_contacts_list);
         this.manager = new LinearLayoutManager(this);
 
