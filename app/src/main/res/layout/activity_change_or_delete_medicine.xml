@@ -53,6 +53,33 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <EditText
+        android:id="@+id/medicine_show_id"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar" />
+
+    <EditText
+        android:id="@+id/timer_show_id"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medicine_show_id" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout8"
@@ -81,11 +108,10 @@
             android:id="@+id/monday_text_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="28dp"
             android:gravity="center"
             android:text="S"
             android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="28dp"
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
@@ -136,7 +162,7 @@
             android:id="@+id/sunday_checkBox_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/saturday_checkBox_id"
             app:layout_constraintTop_toBottomOf="@+id/sunday_text_id" />
 
@@ -144,7 +170,7 @@
             android:id="@+id/saturday_checkBox_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/friday_checkBox_id"
             app:layout_constraintTop_toBottomOf="@+id/saturday_text_id" />
 
@@ -152,7 +178,7 @@
             android:id="@+id/friday_checkBox_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/thursday_checkBox_id"
             app:layout_constraintTop_toBottomOf="@+id/friday_text_id" />
 
@@ -168,7 +194,7 @@
             android:id="@+id/wednesday_checkBox_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintStart_toEndOf="@+id/tuesday_checkBox_id"
             app:layout_constraintTop_toBottomOf="@+id/wednesday_text_id" />
 
@@ -176,9 +202,8 @@
             android:id="@+id/monday_checkBox_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/monday_text_id" />
+            app:layout_constraintTop_toBottomOf="@+id/monday_text_id"
+            tools:layout_editor_absoluteX="28dp" />
 
         <CheckBox
             android:id="@+id/tuesday_checkBox_id"
@@ -202,50 +227,29 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/update_medicine_id"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:text="Atualizar"
-        app:layout_constraintBottom_toTopOf="@+id/delete_medicine_id"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8"
-        tools:layout_editor_absoluteX="166dp" />
-
-    <Button
-        android:id="@+id/delete_medicine_id"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:text="Apagar"
-        app:layout_constraintTop_toBottomOf="@+id/update_medicine_id"
-        tools:layout_editor_absoluteX="166dp" />
-
-    <EditText
-        android:id="@+id/medicine_show_id"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/black"
-        android:textSize="25dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bar" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
-    <EditText
-        android:id="@+id/timer_show_id"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        <Button
+            android:id="@+id/update_medicine_id"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Atualizar"
+            app:layout_constraintBottom_toTopOf="@+id/delete_medicine_id" />
 
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/medicine_show_id" />
+        <Button
+            android:id="@+id/delete_medicine_id"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Apagar"
+            app:layout_constraintTop_toBottomOf="@+id/update_medicine_id" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
