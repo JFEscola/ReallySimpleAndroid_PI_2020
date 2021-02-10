@@ -7,12 +7,10 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -115,7 +113,6 @@ public class SoundLockService extends Service
 
         //gets current day of the week
         String data = new SimpleDateFormat("EEEE", Locale.getDefault()).format(date.getTime());
-
 
        //gets the current time in hours and minutes
         String justTime = calendar.getTime().toString();
