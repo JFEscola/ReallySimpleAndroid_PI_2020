@@ -86,14 +86,14 @@ public class SoundLockService extends Service
                     String name = medicine.getName();
                     String time = medicine.getTime();
 
-                    checkForAlertTimer(medicine.isMonday(),"segunda-feira",time,name);
-                    checkForAlertTimer(medicine.isTuesday(),"terça-feira",time,name);
-                    checkForAlertTimer(medicine.isWednesday(),"quarta-feira",time,name);
-                    checkForAlertTimer(medicine.isThursday(),"quinta-feira",time,name);
-                    checkForAlertTimer(medicine.isFriday(),"sexta-feira",time,name);
-                    checkForAlertTimer(medicine.isSaturday(),"sábado",time,name);
-                    checkForAlertTimer(medicine.isSunday(),"domingo",time,name);
-                    
+                    checkForAlertTimer(medicine.isMonday(),"Monday",time,name);
+                    checkForAlertTimer(medicine.isTuesday(),"Tuesday",time,name);
+                    checkForAlertTimer(medicine.isWednesday(),"Wednesday",time,name);
+                    checkForAlertTimer(medicine.isThursday(),"Thursday",time,name);
+                    checkForAlertTimer(medicine.isFriday(),"Friday",time,name);
+                    checkForAlertTimer(medicine.isSaturday(),"Saturday",time,name);
+                    checkForAlertTimer(medicine.isSunday(),"Sunday",time,name);
+
                 }
 
             }
@@ -107,25 +107,24 @@ public class SoundLockService extends Service
     private void checkForAlertTimer(Boolean isDay, String dayOfWeek, String time, String name){
 
         Calendar calendar = Calendar.getInstance();
-
-        //TODO falta atualizar esta data sempre que o gajo passa 1 minuto e ta funcional este valor é sempre igual a partir do momento que a app inicializa
+        
         Date date = calendar.getTime();
 
         //gets current day of the week
-        String data = new SimpleDateFormat("EEEE", Locale.getDefault()).format(date.getTime());
+        String data = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
 
        //gets the current time in hours and minutes
         String justTime = calendar.getTime().toString();
-        String[] tosplit = justTime.split(" ");
-        String justhours = tosplit[3];
-        String[] hourandmin = justhours.split(":");
-        String hour = hourandmin[0];
-        String min = hourandmin[1];
+        String[] toSplit = justTime.split(" ");
+        String JustHours = toSplit[3];
+        String[] hourAndMin = JustHours.split(":");
+        String hour = hourAndMin[0];
+        String min = hourAndMin[1];
         String toCheck = hour+":"+min;
 
         Log.i("calendarTime", date.toString());
-        Log.i("dataaaaa" , toCheck);
-        Log.i("dataaaaa" , time);
+        Log.i("dataToCheck" , toCheck);
+        Log.i("timeToCheck" , time);
 
         //if current day is checked in the DB medicine
         //day of the week == given parameter string
