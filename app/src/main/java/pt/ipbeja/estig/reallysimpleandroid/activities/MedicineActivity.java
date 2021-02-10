@@ -46,6 +46,9 @@ public class MedicineActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Method to initialize the adapter whicg will fill the recycler view
+     */
     private void setRecyclerView(){
         this.adapter = new MedicineAdapter(this, this.list,"user");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -63,7 +66,9 @@ public class MedicineActivity extends AppCompatActivity {
         setRecyclerView();
     }
 
-
+    /**
+     * Method to fill a list withg Medicine objects
+     */
     private void setUserMedicine(){
 
         this.list = Database.getINSTANCE(getApplicationContext()).medicineDao().getAll();

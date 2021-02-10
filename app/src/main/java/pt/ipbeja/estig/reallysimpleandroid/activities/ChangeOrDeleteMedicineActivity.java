@@ -55,12 +55,14 @@ public class ChangeOrDeleteMedicineActivity extends AppCompatActivity {
 
         setDaysBox();
 
+        //delete an object from the database
         delete.setOnClickListener(v -> {
             Database.getINSTANCE(getApplicationContext()).medicineDao().delete(medicineToChange);
             Toast.makeText(this, "Apagado com sucesso!", Toast.LENGTH_SHORT).show();
             finish();
         });
 
+        // updates the check boxes/name/time to the database
         update.setOnClickListener(v -> {
 
             medicineToChange.setMonday(this.monday.isChecked());
@@ -88,8 +90,11 @@ public class ChangeOrDeleteMedicineActivity extends AppCompatActivity {
         startHomeWatcher();
     }
 
+    /**
+     * Method to set the checks on the boxes according to the data from the database
+     */
     private void setDaysBox(){
-        Medicine medicine = (Medicine) intent.getSerializableExtra("medicine");
+        Medicine medicine = (Medicine) this.intent.getSerializableExtra("medicine");
 
 
         if(medicine.isMonday()){
