@@ -62,7 +62,7 @@ public class ManageMedicineActivity extends AppCompatActivity {
     private void setRecyclerView(){
         this.list = new ArrayList<>();
 
-        list.addAll(Database.getINSTANCE(getApplicationContext()).medicineDao().getAll());
+        this.list = Database.getINSTANCE(getApplicationContext()).medicineDao().getAll();
 
         this.adapter = new MedicineAdapter(this, this.list,"admin");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

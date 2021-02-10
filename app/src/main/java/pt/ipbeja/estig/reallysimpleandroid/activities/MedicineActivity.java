@@ -66,7 +66,7 @@ public class MedicineActivity extends AppCompatActivity {
 
     private void setUserMedicine(){
 
-        this.list.addAll(Database.getINSTANCE(getApplicationContext()).medicineDao().getAll());
+        this.list = Database.getINSTANCE(getApplicationContext()).medicineDao().getAll();
     }
 
     public void onHomeClicked(View view)
