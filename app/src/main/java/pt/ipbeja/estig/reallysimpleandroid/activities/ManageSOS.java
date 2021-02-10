@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
+import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
@@ -26,7 +28,7 @@ public class ManageSOS extends AppCompatActivity
     private Button addContactBtn2;
     private List<Contact> sosContacts;
     private SharedPreferences sharedPref;
-
+    private HomeWatcher homeWatcher = new HomeWatcher(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,8 +38,6 @@ public class ManageSOS extends AppCompatActivity
 
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Gerir SOS");
-
-        //TODO fazer com que a interface associada a esta class fiquem em fullscreeen comoas outras
 
         TextView nameCnt1 = findViewById(R.id.nameContact1);
         TextView nameCnt2 = findViewById(R.id.nameContact2);
@@ -85,8 +85,24 @@ public class ManageSOS extends AppCompatActivity
             //TODO falta a cena de tocar no homekey (HomeWatcher N Stuff)
         });
 
+        this.homeWatcher.setOnHomePressedListener(new OnHomePressedListener()
+        {
+            @Override
+            public void onHomePressed()
+            {
+                homeKeyClick();
+            }
+
+            @Override
+            public void onHomeLongPressed()
+            {
+
+            }
+        });
+
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         checkForSosContacts();
+        this.homeWatcher.startWatch();
     }
 
     @Override
@@ -155,5 +171,13 @@ public class ManageSOS extends AppCompatActivity
                 }
             });
         }).start();
+    }
+
+    public void homeKeyClick()
+    {
+        this.homeWatcher.stopWatch();
+        Intent goHome = new Intent(this.getBaseContext(), MainActivity.class);
+        startActivity(goHome);
+        finish();
     }
 }

@@ -39,11 +39,6 @@ public class ManageFavContactsActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Contactos Favoritos");
 
-        //TODO METER A PERMIÇÕES A FUNCIONAR COMO A ContactListActivity PORQUE SE ASSIM NÃO FOR OS
-        // CONTACTOS NÃO VÃO APARECER LOGO, TEM QUE SE IR BUSCAR A PERMIÇÃO PRIMEIRO À ContactListActivity (Contactos)
-
-        //TODO fazer com que a interface associada a esta class fiquem em fullscreeen como as outras
-
         this.db = Database.getINSTANCE(this);
         this.recyclerView = findViewById(R.id.recyclerView_contacts_list);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -67,6 +62,8 @@ public class ManageFavContactsActivity extends AppCompatActivity {
         });
 
         this.homeWatcher.startWatch();
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
     @Override
