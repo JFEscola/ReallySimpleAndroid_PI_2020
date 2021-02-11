@@ -263,6 +263,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.checkForFavContacts();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+
+    }
+
     private void signalChecker(int signal_strength)
     {
         ImageView signal_icon = findViewById(R.id.signal_icon);
