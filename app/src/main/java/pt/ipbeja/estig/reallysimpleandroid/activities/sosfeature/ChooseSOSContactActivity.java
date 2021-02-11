@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +23,7 @@ import pt.ipbeja.estig.reallysimpleandroid.HomeWatcher;
 import pt.ipbeja.estig.reallysimpleandroid.OnHomePressedListener;
 import pt.ipbeja.estig.reallysimpleandroid.R;
 import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
+import pt.ipbeja.estig.reallysimpleandroid.activities.contactsfeature.ContactListActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
@@ -80,11 +83,11 @@ public class ChooseSOSContactActivity extends AppCompatActivity
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getContacts()
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(ChooseSOSContactActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
         {
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-        }
-        else
+            ActivityCompat.requestPermissions(ChooseSOSContactActivity.this, new String[]{
+                    Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+        } else
         {
             List<Contact> contacts = db.contactDao().getAll();
             this.adapter = new ContactsListAdapter(this, contacts, "chooseSOSContactActivity");

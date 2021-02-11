@@ -60,6 +60,10 @@ public class ManageMedicineActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
+    /**
+     * Method to setup the recycler view , initializes the adapter , passes the needed arguments
+     *
+     */
     private void setRecyclerView(){
         this.list = new ArrayList<>();
 

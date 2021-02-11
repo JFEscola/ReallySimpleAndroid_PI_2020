@@ -21,6 +21,12 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
     List<Medicine> list;
     String person;
 
+    /**
+     * Contructor
+     * @param context
+     * @param list given with objects of medicine
+     * @param person used to prevent final user to enter on the itemview and edit records
+     */
     public MedicineAdapter(Context context, List<Medicine> list, String person){
         this.context = context;
         this.list = list;
@@ -42,6 +48,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
         holder.medicineTime.setText(medicine.getTime());
         holder.medicineDayOfWeek.setText(getDayOfWeek(medicine));
 
+        //if adapter created in admin activity , "admin" string will be passed in constructor , allows admin to edit the medicine objects
         if(person.equals("admin")){
             holder.itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, ChangeOrDeleteMedicineActivity.class);
@@ -54,6 +61,11 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
         }
     }
 
+    /**
+     * creates a string with the selected days for the alarm medicine
+     * @param medicine
+     * @return the string created
+     */
     private String getDayOfWeek(Medicine medicine)
     {
         String dow = "";
