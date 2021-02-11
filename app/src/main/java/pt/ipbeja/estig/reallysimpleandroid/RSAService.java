@@ -27,7 +27,9 @@ public class RSAService extends Service
     private static final String SOUND_VOLUME_SHARED_PREFS = "soundvolume";
     AudioManager audioManager;
 
-    public RSAService() {}
+    public RSAService() {
+
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
@@ -79,9 +81,10 @@ public class RSAService extends Service
         timer.scheduleAtFixedRate(timerTask, 0, 3000);
 
 
-        /*
-
-        */
+        /**
+         * Creates a new task to verify every medicine object
+         * checks if hours and day of week of each object matches with current day and time of the device
+         */
         Timer alertTimer = new Timer();
         TimerTask timerTaskAlert = (new TimerTask() {
             @Override
@@ -92,6 +95,7 @@ public class RSAService extends Service
                     String name = medicine.getName();
                     String time = medicine.getTime();
 
+                    // checks for every day of the week
                     checkForAlertTimer(medicine.isMonday(),"Monday",time,name);
                     checkForAlertTimer(medicine.isTuesday(),"Tuesday",time,name);
                     checkForAlertTimer(medicine.isWednesday(),"Wednesday",time,name);
@@ -101,7 +105,6 @@ public class RSAService extends Service
                     checkForAlertTimer(medicine.isSunday(),"Sunday",time,name);
 
                 }
-
             }
         });
         alertTimer.scheduleAtFixedRate(timerTaskAlert,0, 60000);
@@ -109,6 +112,15 @@ public class RSAService extends Service
         return START_STICKY;
     }
 
+    /**
+     * Method to check if the time and day of week matches with the database objects medicine day and time
+     * Get the time from Calendar, splits the string to get only the hour and minutes which will be used to compare with medicine objects
+     * if a match is found creates a notification object and shows it to the user
+     * @param isDay , checks if is day is checked
+     * @param dayOfWeek , compare current day with given string day
+     * @param time , will compare the time given from the atribute
+     * @param name , sends the name of the medicine to the alert message
+     */
     private void checkForAlertTimer(Boolean isDay, String dayOfWeek, String time, String name){
 
         Calendar calendar = Calendar.getInstance();
@@ -127,10 +139,6 @@ public class RSAService extends Service
         String min = hourAndMin[1];
         String toCheck = hour+":"+min;
 
-        Log.i("calendarTime", date.toString());
-        Log.i("dataToCheck" , toCheck);
-        Log.i("timeToCheck" , time);
-
         //if current day is checked in the DB medicine
         //day of the week == given parameter string
         //current hour and minute == DB medicine time
@@ -140,7 +148,6 @@ public class RSAService extends Service
             NotificationCompat.Builder nb = notificationHelper.getNotification(name,toCheck);
             notificationHelper.getManager().notify(1, nb.build());
         }
-
     }
 
 

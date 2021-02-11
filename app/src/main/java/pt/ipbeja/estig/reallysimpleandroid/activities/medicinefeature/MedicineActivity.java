@@ -40,7 +40,7 @@ public class MedicineActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.activityTitle);
         title.setText("Medicamentos");
 
-        setUserMedicine();
+        fillListMedicine();
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         startHomeWatcher();
@@ -48,7 +48,7 @@ public class MedicineActivity extends AppCompatActivity {
 
 
     /**
-     * Method to initialize the adapter whicg will fill the recycler view
+     * Method to initialize the adapter which will fill the recycler view
      */
     private void setRecyclerView(){
         this.adapter = new MedicineAdapter(this, this.list,"user");
@@ -70,7 +70,7 @@ public class MedicineActivity extends AppCompatActivity {
     /**
      * Method to fill a list with Medicine objects
      */
-    private void setUserMedicine(){
+    private void fillListMedicine(){
 
         this.list = Database.getINSTANCE(getApplicationContext()).medicineDao().getAll();
     }
