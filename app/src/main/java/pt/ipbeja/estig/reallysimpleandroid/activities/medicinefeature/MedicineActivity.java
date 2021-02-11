@@ -68,7 +68,7 @@ public class MedicineActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to fill a list withg Medicine objects
+     * Method to fill a list with Medicine objects
      */
     private void setUserMedicine(){
 
