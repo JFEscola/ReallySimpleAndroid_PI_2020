@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.IBinder;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -109,7 +108,7 @@ public class RSAService extends Service
         });
         alertTimer.scheduleAtFixedRate(timerTaskAlert,0, 60000);
 
-        return START_STICKY;
+        return START_REDELIVER_INTENT;
     }
 
     /**

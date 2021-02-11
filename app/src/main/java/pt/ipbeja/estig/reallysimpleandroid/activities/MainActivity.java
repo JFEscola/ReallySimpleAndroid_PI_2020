@@ -265,9 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed()
-    {
-
-    }
+    {}
 
     private void signalChecker(int signal_strength)
     {
