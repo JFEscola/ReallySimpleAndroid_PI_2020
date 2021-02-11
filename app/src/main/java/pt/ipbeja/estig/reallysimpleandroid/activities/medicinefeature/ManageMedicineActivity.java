@@ -44,7 +44,7 @@ public class ManageMedicineActivity extends AppCompatActivity {
 
         setRecyclerView();
         addMedicine.setOnClickListener(v -> {
-            startActivity(new Intent(this, InsertNewMedicine.class));
+            startActivity(new Intent(this, InsertNewMedicineActivity.class));
         });
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);

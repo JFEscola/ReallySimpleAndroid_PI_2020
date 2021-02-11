@@ -24,7 +24,7 @@ import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.Database;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Medicine;
 
-public class InsertNewMedicine extends AppCompatActivity {
+public class InsertNewMedicineActivity extends AppCompatActivity {
 
     private HomeWatcher homeWatcher  = new HomeWatcher(this);
     private static EditText medicineName;
@@ -122,7 +122,7 @@ public class InsertNewMedicine extends AppCompatActivity {
      * @param v
      */
     public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new InsertNewMedicine.TimePickerFragment();
+        DialogFragment newFragment = new InsertNewMedicineActivity.TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
