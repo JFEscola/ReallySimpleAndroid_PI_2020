@@ -37,7 +37,7 @@
             android:label="Contactos"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.sosfeature.ManageSOS"
+            android:name=".activities.sosfeature.ManageSOSActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.sosfeature.EmergencyActivity"

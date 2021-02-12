@@ -22,7 +22,7 @@ import pt.ipbeja.estig.reallysimpleandroid.Utils.Utils;
 import pt.ipbeja.estig.reallysimpleandroid.activities.MainActivity;
 import pt.ipbeja.estig.reallysimpleandroid.db.entity.Contact;
 
-public class ManageSOS extends AppCompatActivity
+public class ManageSOSActivity extends AppCompatActivity
 {
 
     private Button addContactBtn1;

@@ -18,7 +18,7 @@ import pt.ipbeja.estig.reallysimpleandroid.activities.applistfeature.ManageAppsA
 import pt.ipbeja.estig.reallysimpleandroid.activities.contactsfeature.ContactsSettingsActivity;
 import pt.ipbeja.estig.reallysimpleandroid.activities.lockvolumefeature.ManageDeviceVolumeActivity;
 import pt.ipbeja.estig.reallysimpleandroid.activities.medicinefeature.ManageMedicineActivity;
-import pt.ipbeja.estig.reallysimpleandroid.activities.sosfeature.ManageSOS;
+import pt.ipbeja.estig.reallysimpleandroid.activities.sosfeature.ManageSOSActivity;
 
 /**
  * The type Settings activity.
@@ -93,7 +93,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, ContactsSettingsActivity.class));
                 break;
             case R.id.linearLayout_settings_manage_sos:
-                startActivity(new Intent(this, ManageSOS.class));
+                startActivity(new Intent(this, ManageSOSActivity.class));
                 break;
             case R.id.linearLayout_settings_manage_volume:
                 startActivity(new Intent(this, ManageDeviceVolumeActivity.class));
